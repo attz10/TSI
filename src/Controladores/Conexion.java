@@ -5,26 +5,35 @@ package Controladores;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 import java.sql.Connection;
+import java.sql.Statement;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 /**
  *
  * @author atude
  */
 public class Conexion {
-    public static final String URL = "jdbc:mysql://localhost:3306/tsi";
-    public static final String USER = "root";
-    public static final String PASS = "";
+    public static  String URL = "jdbc:mysql://localhost:3306/tsi";
+    public static  String USER = "root";
+    public static  String PASS = "";
+    
+    public static Connection con;
+    public static Statement stm;
      
-    public Connection conectar(){
-        Connection con = null;
+    public static void conectar(){
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con = (Connection) DriverManager.getConnection(URL, USER, PASS);
-            JOptionPane.showMessageDialog(null,"conectado con exito");
+            con = DriverManager.getConnection(URL, USER, PASS);
+            if(con != null){
+                JOptionPane.showMessageDialog(null,"conectado con exito");
+            }   
         }catch(Exception e){
             JOptionPane.showMessageDialog(null,"Error: " + e.getMessage());
         }
-        return con;
+    }
+    
+    public static void desconectar() throws SQLException{
+        con.close();
     }
 }
