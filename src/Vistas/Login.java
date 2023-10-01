@@ -1,9 +1,7 @@
 package Vistas;
 
 import Controladores.Conexion;
-import java.sql.Statement;
-import java.sql.Connection;
-import java.sql.ResultSet;
+import Controladores.Usuario;
 import javax.swing.JOptionPane;
 
 /*
@@ -16,8 +14,6 @@ import javax.swing.JOptionPane;
  * @author atude
  */
 public class Login extends javax.swing.JFrame {
-    Conexion conecta = new Conexion();
-    Connection con = conecta.conectar();
     /**
      * Creates new form Login
      */
@@ -26,29 +22,19 @@ public class Login extends javax.swing.JFrame {
     }
 
     public void validarUsuario(){
-        byte index = 0;
         String pass = String.valueOf(txtPassword.getPassword());
-        String usuario = txtUsuario.getText();  
-        String sql= "select * from usuarios where usuario='"+usuario+"' and contrasena='"+pass+"' ";
-        
-        try {
-            Statement st=con.createStatement();
-            ResultSet rs=st.executeQuery(sql);
-            JOptionPane.showMessageDialog(null,"entre a validar");
-            if(rs.next()){
-                index = 1;
-                JOptionPane.showMessageDialog(null,"valor del index: " + index);
-                if(index==1){
-                    Menu menu = new Menu();
-                    menu.setVisible(true);
-                    this.dispose();
-                }
-            }else{
-                JOptionPane.showMessageDialog(null,"ERROR DE ACCESO, CREDENCIALES INCORRECTAS");
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null,"ERROR: " + e.getMessage());
+        String usuario = txtUsuario.getText(); 
+        byte resultado;
+        Usuario objUsu = new Usuario(usuario,pass);
+        resultado = objUsu.validarUsuario();
+        if (resultado == 1 ){
+            this.setVisible(false);
+            Menu menu = new Menu();
+            menu.setVisible(true);
+        }else{
+            JOptionPane.showMessageDialog(null,"Credenciales incorrectas");
         }
+       
     }
     /**
      * This method is called from within the constructor to initialize the form.
