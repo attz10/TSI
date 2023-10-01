@@ -20,6 +20,7 @@ public class Conexion {
     
     public static Connection con;
     public static Statement stm;
+    public static Boolean buscarCliente;
      
     public static void conectar(){
         try{
