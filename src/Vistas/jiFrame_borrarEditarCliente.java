@@ -4,6 +4,7 @@
  */
 package Vistas;
 
+//librerias
 import Controladores.Cliente;
 import Controladores.Conexion;
 import javax.swing.JOptionPane;
@@ -12,6 +13,7 @@ import javax.swing.JOptionPane;
  *
  * @author atude
  */
+
 public class jiFrame_borrarEditarCliente extends javax.swing.JInternalFrame {
 
     /**
@@ -19,6 +21,13 @@ public class jiFrame_borrarEditarCliente extends javax.swing.JInternalFrame {
      */
     public jiFrame_borrarEditarCliente() {
         initComponents();
+    }
+    
+    //limpiar formulario
+    private void limpiar(){
+        this.txtRutCliente.setText("");
+        this.txtNombreCliente.setText("");
+        this.txtFonoCliente.setText("");
     }
 
     /**
@@ -46,9 +55,13 @@ public class jiFrame_borrarEditarCliente extends javax.swing.JInternalFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Encontrar"));
 
+        jLabel1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabel1.setText("RUT:");
+        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
+        btnBuscar.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         btnBuscar.setText("BUSCAR");
+        btnBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarActionPerformed(evt);
@@ -63,8 +76,8 @@ public class jiFrame_borrarEditarCliente extends javax.swing.JInternalFrame {
                 .addGap(28, 28, 28)
                 .addComponent(jLabel1)
                 .addGap(49, 49, 49)
-                .addComponent(txtRutCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                .addComponent(txtRutCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addComponent(btnBuscar)
                 .addGap(31, 31, 31))
         );
@@ -81,8 +94,10 @@ public class jiFrame_borrarEditarCliente extends javax.swing.JInternalFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos"));
 
+        jLabel2.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabel2.setText("NOMBRE:");
 
+        jLabel3.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabel3.setText("FONO:");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -95,9 +110,9 @@ public class jiFrame_borrarEditarCliente extends javax.swing.JInternalFrame {
                     .addComponent(jLabel2)
                     .addComponent(jLabel3))
                 .addGap(49, 49, 49)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtNombreCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
-                    .addComponent(txtFonoCliente))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtFonoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -114,14 +129,18 @@ public class jiFrame_borrarEditarCliente extends javax.swing.JInternalFrame {
                 .addGap(20, 20, 20))
         );
 
+        btnEliminar.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         btnEliminar.setText("ELIMINAR");
+        btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarActionPerformed(evt);
             }
         });
 
+        btnActualizar.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         btnActualizar.setText("ACTUALIZAR");
+        btnActualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnActualizarActionPerformed(evt);
@@ -156,59 +175,116 @@ public class jiFrame_borrarEditarCliente extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEliminar)
                     .addComponent(btnActualizar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //buscar cliente
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
-        try {
-            Cliente cliente = new Cliente(this.txtRutCliente.getText(),"xxx","xxx");
-            cliente.existCliente();
-            if(Conexion.buscarCliente){
-                this.txtRutCliente.setText(cliente.getRut_cliente());
-                this.txtNombreCliente.setText(cliente.getNombre());
-                this.txtFonoCliente.setText(cliente.getFono()); 
-            }else{
-                JOptionPane.showMessageDialog(this,"cliente no existe","Buscar",2);
+        
+        //obtengo datos
+        String rut = this.txtRutCliente.getText().trim();
+        
+        //hay datos para buscar?
+        if (rut.isEmpty()) {
+            JOptionPane.showMessageDialog(this,"Ingrese el rut del cliente a buscar","Error en buscar cliente",2);
+        }
+        //hay datos para buscar
+        else {
+            try {
+                //existe el cliente?
+                Cliente cliente = new Cliente(rut,"xxx","xxx");
+                cliente.existCliente();
+                //SI EXISTE
+                if(Conexion.buscarCliente){
+                    this.txtRutCliente.setText(cliente.getRut_cliente());
+                    this.txtNombreCliente.setText(cliente.getNombre());
+                    this.txtFonoCliente.setText(cliente.getFono()); 
+                }
+                //el cliente NO EXISTE
+                else{
+                    JOptionPane.showMessageDialog(this,"cliente no existe","Buscar cliente",2);
+                }
             }
-        } catch (Exception e) {
-            
+            //error
+            catch (Exception e) {
+                //error
+            }
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
+    //eliminar cliente
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
-        try {
-            Cliente cliente = new Cliente(this.txtRutCliente.getText(),"xxx","xxx");
-            cliente.existCliente();
-            if(Conexion.buscarCliente){
-                cliente.borrarCliente();
-                JOptionPane.showMessageDialog(this,"cliente eliminado","Eliminar",3);
-            }else{
-                JOptionPane.showMessageDialog(this,"cliente no encontrado","eliminar",2);
+        String rut = this.txtRutCliente.getText().trim();
+        
+        //hay un rut?
+        if (rut.isEmpty()) {
+            JOptionPane.showMessageDialog(this,"Eliga el rut del cliente a eliminar","Eliminar cliente",2);
+        }
+        //hay un rut
+        else {
+            try {
+                //existe el cliente?
+                Cliente cliente = new Cliente(this.txtRutCliente.getText(),"xxx","xxx");
+                cliente.existCliente();
+                //SI EXISTE, lo borro
+                if(Conexion.buscarCliente){
+                    cliente.borrarCliente();
+                    limpiar();
+                    //JOptionPane.showMessageDialog(this,"cliente eliminado","Eliminar",3);
+                }
+                //NO EXISTE
+                else{
+                    JOptionPane.showMessageDialog(this,"cliente no encontrado","Eliminar cliente",2);
+                }   
             }
-        } catch (Exception e) {
-            
+            //hay un error
+            catch (Exception e) {
+                //error
+            }
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
+    //actualizar cliente
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         // TODO add your handling code here:
-        try {
-            Cliente cliente = new Cliente(this.txtRutCliente.getText(),"xxx","xxx");
-            cliente.existCliente();
-            if(Conexion.buscarCliente){
-                cliente.setNombre(this.txtNombreCliente.getText());
-                cliente.setFono(this.txtFonoCliente.getText());
-                cliente.actualizarCliente();
-                JOptionPane.showMessageDialog(this,"cliente actualizado","Actualizar",1);
-            }else{
-                JOptionPane.showMessageDialog(this,"cliente no encontrado","Actualizar",1);
+        
+        //obtengo datos
+        String rut = this.txtRutCliente.getText().trim();
+        String nombre = this.txtNombreCliente.getText().trim();
+        String fono = this.txtFonoCliente.getText().trim();
+        
+        //hay datos para actualizar?
+        if (rut.isEmpty() || nombre.isEmpty() || fono.isEmpty()) {
+             JOptionPane.showMessageDialog(this,"No deje espacios en blanco","Actualizar cliente",2);
+        }
+        //no hay errores 
+        else {
+            try {
+                //existe el cliente?
+                Cliente cliente = new Cliente(rut,"xxx","xxx");
+                cliente.existCliente();
+                //SI EXISTE, actualizo el registro
+                if(Conexion.buscarCliente){
+                    cliente.setNombre(this.txtNombreCliente.getText().trim());
+                    cliente.setFono(this.txtFonoCliente.getText().trim());
+                    cliente.actualizarCliente();
+                    limpiar();
+                    //JOptionPane.showMessageDialog(this,"Cliente actualizado correctamente","Actualizar",1);
+                }
+                //NO EXISTE
+                else{
+                    JOptionPane.showMessageDialog(this,"cliente no encontrado","Actualizar cliente",1);
+                }
+            } 
+            //hay un error
+            catch (Exception e) { 
+                //error
             }
-        } catch (Exception e) { 
         }
     }//GEN-LAST:event_btnActualizarActionPerformed
 
