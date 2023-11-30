@@ -77,6 +77,7 @@ public class Cliente {
             Conexion.stm = Conexion.con.prepareStatement(sql);
             Conexion.stm.execute(sql);
             JOptionPane.showMessageDialog(null, "Cliente actualizado correctamente", "Actualizar registro de un cliente", 1);
+            Conexion.desconectar();
         } 
         //hay un error
         catch (Exception e) {
@@ -93,6 +94,7 @@ public class Cliente {
             Conexion.stm = Conexion.con.prepareStatement(sql);
             Conexion.stm.execute(sql);
             JOptionPane.showMessageDialog(null, "Cliente borrado correctamente", "Borrar un cliente", 1);
+            Conexion.desconectar();
         } 
         //hay un error
         catch (Exception e) {

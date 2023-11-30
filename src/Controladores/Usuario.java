@@ -3,8 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
-//librerias
 package Controladores;
+
+//librerias
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 
