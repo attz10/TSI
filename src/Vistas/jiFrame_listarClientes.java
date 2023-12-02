@@ -4,19 +4,23 @@
  */
 package Vistas;
 
+//librerias
 import Controladores.Conexion;
 import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author atude
  */
+
 public class jiFrame_listarClientes extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form jiFrame_listarClientes
      */
+    
     public jiFrame_listarClientes() {
         initComponents();
     }
@@ -46,7 +50,9 @@ public class jiFrame_listarClientes extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(tabla);
 
+        btnDatos.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnDatos.setText("Mostrar Datos");
+        btnDatos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnDatos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDatosActionPerformed(evt);
@@ -58,38 +64,42 @@ public class jiFrame_listarClientes extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 487, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(187, 187, 187)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnDatos)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(171, 171, 171))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnDatos)
-                .addGap(0, 33, Short.MAX_VALUE))
+                .addComponent(btnDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 23, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //listar los datos
     private void btnDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatosActionPerformed
         // TODO add your handling code here:
         try {
+            //conecto a la DB y hago un query de select *
             Conexion.buscarCliente=false;
             String sql = "select * from clientes";
             Conexion.conectar();
             Conexion.stm = Conexion.con.prepareStatement(sql);
             ResultSet rs = Conexion.stm.executeQuery(sql);
             
+            //añado las columnas a la tabla
             //DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
             DefaultTableModel modelo = new DefaultTableModel();
             modelo.addColumn("RUT");
             modelo.addColumn("NOMBRE");
             modelo.addColumn("FONO");
             
+            //añado los datos a las columnas
             Object [] fila = new Object[3];
             while(rs.next()){
                 for(int i = 0; i<3;i++){
@@ -101,7 +111,10 @@ public class jiFrame_listarClientes extends javax.swing.JInternalFrame {
                 tabla.setModel(modelo);
             }
             Conexion.desconectar();
-        } catch (Exception e) {
+        } 
+        //hubo un error
+        catch (Exception e) {
+            //error
         }
     }//GEN-LAST:event_btnDatosActionPerformed
 

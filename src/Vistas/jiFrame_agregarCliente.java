@@ -4,9 +4,12 @@
  */
 package Vistas;
 
+//librerias
 import Controladores.Cliente;
 import Controladores.Conexion;
 import javax.swing.JOptionPane;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -19,6 +22,13 @@ public class jiFrame_agregarCliente extends javax.swing.JInternalFrame {
      */
     public jiFrame_agregarCliente() {
         initComponents();
+    }
+    
+    //limpiar valores
+    private void limpiar(){
+        txtRut.setText("");
+        txtNombre.setText("");
+        txtFono.setText("");
     }
 
     /**
@@ -40,10 +50,13 @@ public class jiFrame_agregarCliente extends javax.swing.JInternalFrame {
 
         setClosable(true);
 
+        jLabel1.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jLabel1.setText("RUT:");
 
+        jLabel2.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jLabel2.setText("NOMBRE:");
 
+        jLabel3.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jLabel3.setText("FONO:");
 
         txtRut.addActionListener(new java.awt.event.ActionListener() {
@@ -52,7 +65,9 @@ public class jiFrame_agregarCliente extends javax.swing.JInternalFrame {
             }
         });
 
+        btnAgregar.setFont(new java.awt.Font("SansSerif", 1, 16)); // NOI18N
         btnAgregar.setText("Agregar");
+        btnAgregar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgregarActionPerformed(evt);
@@ -64,18 +79,22 @@ public class jiFrame_agregarCliente extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1))
-                .addGap(73, 73, 73)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnAgregar)
-                    .addComponent(txtRut, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
-                    .addComponent(txtNombre)
-                    .addComponent(txtFono))
-                .addContainerGap(166, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1))
+                        .addGap(73, 73, 73)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtRut, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                            .addComponent(txtNombre)
+                            .addComponent(txtFono, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(121, 121, 121)
+                        .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -92,9 +111,9 @@ public class jiFrame_agregarCliente extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtFono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(48, 48, 48)
-                .addComponent(btnAgregar)
-                .addContainerGap(83, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22))
         );
 
         pack();
@@ -106,15 +125,64 @@ public class jiFrame_agregarCliente extends javax.swing.JInternalFrame {
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         // TODO add your handling code here:
-        try {
-            Cliente cliente = new Cliente(this.txtRut.getText(), this.txtNombre.getText(), this.txtFono.getText());
-            cliente.existCliente();
-            if(Conexion.buscarCliente){
-                JOptionPane.showMessageDialog(null, "Cliente ya existe");
-            }else{
-                cliente.insertarCliente();
+        
+        //obtengo datos
+        String rut = this.txtRut.getText().trim();
+        String nombre = this.txtNombre.getText().trim();
+        String fono = this.txtFono.getText().trim();
+        
+        //erorres
+       List<String> errores = new ArrayList<>();
+       
+       //valido los valores
+       if (rut.isEmpty() || nombre.isEmpty() || fono.isEmpty()){
+           errores.add("- No deje campos vacios");
+       }
+       if (rut.length() > 10) {
+           errores.add("- El rut no puede ser mayor a 10 digitos");
+       }
+       if (nombre.length() > 35) {
+           errores.add("- El nombre no puede ser mayor a 35 caracteres");
+       }
+       if (fono.length() > 12) {
+           errores.add("- El fono no puede ser mayor a 12 números");
+       }
+       //el fono es un número?
+       try{
+           int aux = Integer.parseInt(fono);
+       }
+       catch (Exception e){
+           errores.add("- El fono debe ser númerico");
+       }
+       //hay errores?
+       if (!errores.isEmpty()) {
+            //hay errores, creo mensaje de error
+            String msgError = String.join("\n", errores);
+            JOptionPane.showMessageDialog(null, msgError, "Error en insertado de cliente", 2);
+        }
+        //todo OK
+        else{
+            //todo correcto, intento insertar cliente
+            try {
+                //instancio el nuevo cliente
+                Cliente cliente = new Cliente(rut, nombre, fono);
+                cliente.existCliente();
+                cliente.validarRut();
+                //el cliente ya existe
+                if(Conexion.buscarCliente){
+                    JOptionPane.showMessageDialog(null, "El Cliente con rut ("+rut+") YA EXISTE", "Error en insertar cliente", 2);
+                }else if(!cliente.isValidado()){
+                    JOptionPane.showMessageDialog(null, "No corresponde al Digito verficador", "Rut invalido", 2);
+                }
+                //el cliente no existe, hago el insertado
+                else{
+                    cliente.insertarCliente();
+                    limpiar();
+                }
+            } 
+            //hubo algún error
+            catch (Exception e) {
             }
-        } catch (Exception e) {
         }
     }//GEN-LAST:event_btnAgregarActionPerformed
 

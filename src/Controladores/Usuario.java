@@ -2,7 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+
 package Controladores;
+
+//librerias
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 
@@ -10,16 +13,20 @@ import javax.swing.JOptionPane;
  *
  * @author atude
  */
+
 public class Usuario {
+    //atributos del usuario
     private String rut;
     private String usuario;
     private String contrasena;
 
+    //constructor
     public Usuario(String usuario, String contrasena) {
         this.usuario = usuario;
         this.contrasena = contrasena;
     }
     
+    //gets y sets
     public String getRut() {
         return rut;
     }
@@ -44,25 +51,33 @@ public class Usuario {
         this.contrasena = contrasena;
     }
     
+    //validar usuario
     public byte validarUsuario(){
+        //indicador
         byte index = 0;
         try {
+            //intenti validar el user
             String sql= "select * from usuarios where usuario='"+usuario+"' and contrasena='"+contrasena+"' ";
             Conexion.conectar();
             Conexion.stm =Conexion.con.prepareStatement(sql);
             ResultSet rs = Conexion.stm.executeQuery(sql);
+            //el user existe
             if(rs.next()){
                 index = 1;
                 if(index==1){
                    return index;
                 }
-            }else{
-                JOptionPane.showMessageDialog(null,"ERROR DE ACCESO, CREDENCIALES INCORRECTAS");
+            }
+            //el user no existe
+            else{
+                //JOptionPane.showMessageDialog(null,"CREDENCIALES INCORRECTAS", "Error de acceso", 2);
                 return index;
             }
             Conexion.desconectar();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null,"ERROR: " + e.getMessage());
+        } 
+        //hay un error de proceso
+        catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"ERROR: " + e.getMessage(), "Error de proceso", 2);
             return index;
         }
         return index;

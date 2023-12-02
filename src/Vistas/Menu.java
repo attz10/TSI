@@ -8,16 +8,21 @@ package Vistas;
  *
  * @author atude
  */
+
 public class Menu extends javax.swing.JFrame {
 
     /**
      * Creates new form Menu
      */
+    
+    //vistas para la administracion de clientes
     jiFrame_agregarCliente jiAgregar = new jiFrame_agregarCliente();
     jiFrame_borrarEditarCliente jiEditar = new jiFrame_borrarEditarCliente();
     jiFrame_listarClientes jiListar = new jiFrame_listarClientes();
+    
     public Menu() {
         initComponents();
+        //agrego las vistas del jmenu
         this.add(jiAgregar);
         this.add(jiEditar);
         this.add(jiListar);
@@ -33,59 +38,134 @@ public class Menu extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        jMenuClientes = new javax.swing.JMenu();
+        jmiEditDeleteCliente = new javax.swing.JMenuItem();
         jmiAgregarCliente = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        jmiListarClientes = new javax.swing.JMenuItem();
+        jMenuVehiculos = new javax.swing.JMenu();
+        jmiEditDeleteVehiculo = new javax.swing.JMenuItem();
+        jmiAgregarVehiculo = new javax.swing.JMenuItem();
+        jmiListarVehiculos = new javax.swing.JMenuItem();
+        jMenuBodega = new javax.swing.JMenu();
+        jMenuVentas = new javax.swing.JMenu();
+        jMenuSalir = new javax.swing.JMenu();
         jmiSalir = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(204, 204, 204));
+        setResizable(false);
 
-        jMenu1.setText("clientes");
-        jMenu1.addActionListener(new java.awt.event.ActionListener() {
+        jMenuBar1.setBackground(new java.awt.Color(204, 204, 204));
+        jMenuBar1.setForeground(new java.awt.Color(0, 0, 0));
+        jMenuBar1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jMenuBar1.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        jMenuBar1.setPreferredSize(new java.awt.Dimension(150, 50));
+
+        jMenuClientes.setText("Clientes");
+        jMenuClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenuClientes.setFont(new java.awt.Font("SansSerif", 1, 22)); // NOI18N
+        jMenuClientes.setMargin(new java.awt.Insets(2, 10, 2, 10));
+        jMenuClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu1ActionPerformed(evt);
+                jMenuClientesActionPerformed(evt);
             }
         });
 
+        jmiEditDeleteCliente.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        jmiEditDeleteCliente.setText("Editar y Borrar Cliente");
+        jmiEditDeleteCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jmiEditDeleteCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiEditDeleteClienteActionPerformed(evt);
+            }
+        });
+        jMenuClientes.add(jmiEditDeleteCliente);
+
+        jmiAgregarCliente.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jmiAgregarCliente.setText("Agregar Cliente");
+        jmiAgregarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jmiAgregarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmiAgregarClienteActionPerformed(evt);
             }
         });
-        jMenu1.add(jmiAgregarCliente);
+        jMenuClientes.add(jmiAgregarCliente);
 
-        jMenuItem1.setText("Editar y Borrar Cliente");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        jmiListarClientes.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        jmiListarClientes.setText("Listar Clientes");
+        jmiListarClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jmiListarClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                jmiListarClientesActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        jMenuClientes.add(jmiListarClientes);
 
-        jMenuItem2.setText("Listar Clientes");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        jMenuBar1.add(jMenuClientes);
+
+        jMenuVehiculos.setText("Vehículos");
+        jMenuVehiculos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenuVehiculos.setFont(new java.awt.Font("SansSerif", 1, 22)); // NOI18N
+        jMenuVehiculos.setMargin(new java.awt.Insets(2, 10, 2, 10));
+
+        jmiEditDeleteVehiculo.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        jmiEditDeleteVehiculo.setText("Editar y borrar vehículo");
+        jmiEditDeleteVehiculo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                jmiEditDeleteVehiculoActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem2);
+        jMenuVehiculos.add(jmiEditDeleteVehiculo);
 
-        jMenuBar1.add(jMenu1);
+        jmiAgregarVehiculo.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        jmiAgregarVehiculo.setText("Agregar vehículo");
+        jmiAgregarVehiculo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiAgregarVehiculoActionPerformed(evt);
+            }
+        });
+        jMenuVehiculos.add(jmiAgregarVehiculo);
 
-        jMenu2.setText("salir");
+        jmiListarVehiculos.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        jmiListarVehiculos.setText("Listar vehículos");
+        jmiListarVehiculos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiListarVehiculosActionPerformed(evt);
+            }
+        });
+        jMenuVehiculos.add(jmiListarVehiculos);
 
+        jMenuBar1.add(jMenuVehiculos);
+
+        jMenuBodega.setText("Bodega");
+        jMenuBodega.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenuBodega.setFont(new java.awt.Font("SansSerif", 1, 22)); // NOI18N
+        jMenuBodega.setMargin(new java.awt.Insets(2, 10, 2, 10));
+        jMenuBar1.add(jMenuBodega);
+
+        jMenuVentas.setText("Ventas");
+        jMenuVentas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenuVentas.setFont(new java.awt.Font("SansSerif", 1, 22)); // NOI18N
+        jMenuVentas.setMargin(new java.awt.Insets(2, 10, 2, 10));
+        jMenuBar1.add(jMenuVentas);
+
+        jMenuSalir.setText("salir");
+        jMenuSalir.setActionCommand("SALIR");
+        jMenuSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenuSalir.setFont(new java.awt.Font("SansSerif", 2, 16)); // NOI18N
+        jMenuSalir.setMargin(new java.awt.Insets(2, 10, 2, 10));
+
+        jmiSalir.setFont(new java.awt.Font("SansSerif", 2, 12)); // NOI18N
         jmiSalir.setText("salir");
+        jmiSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jmiSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmiSalirActionPerformed(evt);
             }
         });
-        jMenu2.add(jmiSalir);
+        jMenuSalir.add(jmiSalir);
 
-        jMenuBar1.add(jMenu2);
+        jMenuBar1.add(jMenuSalir);
 
         setJMenuBar(jMenuBar1);
 
@@ -93,39 +173,60 @@ public class Menu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 778, Short.MAX_VALUE)
+            .addGap(0, 650, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 480, Short.MAX_VALUE)
+            .addGap(0, 450, Short.MAX_VALUE)
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    //btn agregar cliente
     private void jmiAgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiAgregarClienteActionPerformed
         // TODO add your handling code here:
         this.jiAgregar.show();
     }//GEN-LAST:event_jmiAgregarClienteActionPerformed
 
+    //btn salir
     private void jmiSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiSalirActionPerformed
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_jmiSalirActionPerformed
 
-    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
+    //menu
+    private void jMenuClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuClientesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenu1ActionPerformed
+    }//GEN-LAST:event_jMenuClientesActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    //btn editar y eliminar cliente
+    private void jmiEditDeleteClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiEditDeleteClienteActionPerformed
         // TODO add your handling code here:
         this.jiEditar.show();
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_jmiEditDeleteClienteActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    //btn listar clientes
+    private void jmiListarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiListarClientesActionPerformed
         // TODO add your handling code here:
         this.jiListar.show();
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_jmiListarClientesActionPerformed
+
+    //btn editar y borrar vehiculo
+    private void jmiEditDeleteVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiEditDeleteVehiculoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jmiEditDeleteVehiculoActionPerformed
+
+    //btn agregar vehiculo
+    private void jmiAgregarVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiAgregarVehiculoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jmiAgregarVehiculoActionPerformed
+
+    //btn listar vehículos
+    private void jmiListarVehiculosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiListarVehiculosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jmiListarVehiculosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -163,12 +264,18 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenu jMenuBodega;
+    private javax.swing.JMenu jMenuClientes;
+    private javax.swing.JMenu jMenuSalir;
+    private javax.swing.JMenu jMenuVehiculos;
+    private javax.swing.JMenu jMenuVentas;
     private javax.swing.JMenuItem jmiAgregarCliente;
+    private javax.swing.JMenuItem jmiAgregarVehiculo;
+    private javax.swing.JMenuItem jmiEditDeleteCliente;
+    private javax.swing.JMenuItem jmiEditDeleteVehiculo;
+    private javax.swing.JMenuItem jmiListarClientes;
+    private javax.swing.JMenuItem jmiListarVehiculos;
     private javax.swing.JMenuItem jmiSalir;
     // End of variables declaration//GEN-END:variables
 }
