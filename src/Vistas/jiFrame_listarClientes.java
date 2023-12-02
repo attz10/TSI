@@ -39,6 +39,7 @@ public class jiFrame_listarClientes extends javax.swing.JInternalFrame {
         btnDatos = new javax.swing.JButton();
 
         setClosable(true);
+        setIconifiable(true);
 
         tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

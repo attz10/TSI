@@ -52,6 +52,7 @@ public class jiFrame_borrarEditarCliente extends javax.swing.JInternalFrame {
         btnActualizar = new javax.swing.JButton();
 
         setClosable(true);
+        setIconifiable(true);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Encontrar"));
 

@@ -19,16 +19,7 @@ public class Cliente {
     private String rut_cliente;
     private String nombre;
     private String fono;
-    private boolean validado=false;
-    
-    public boolean isValidado() {
-        return validado;
-    }
-
-    public void setValidado(boolean validado) {
-        this.validado = validado;
-    }
-    
+    private boolean validado = false;
     
     //constructor
     public Cliente(String rut_cliente, String nombre, String fono) {
@@ -38,6 +29,14 @@ public class Cliente {
     }
     
     //gets y sets
+    public boolean isValidado() {
+        return validado;
+    }
+
+    public void setValidado(boolean validado) {
+        this.validado = validado;
+    }
+    
     public String getRut_cliente() {
         return rut_cliente;
     }
@@ -64,7 +63,7 @@ public class Cliente {
     
     //validar el rut de cliente
     public void validarRut(){
-        String rutInvertido=this.rut_cliente.substring(0,this.rut_cliente.length()-1);
+        String rutInvertido = this.rut_cliente.substring(0,this.rut_cliente.length()-1);
         StringBuilder sb = new StringBuilder(rutInvertido);
         String invertida = sb.reverse().toString();
         String [] cadena = invertida.split("");
