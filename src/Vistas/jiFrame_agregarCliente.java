@@ -49,9 +49,10 @@ public class jiFrame_agregarCliente extends javax.swing.JInternalFrame {
         btnAgregar = new javax.swing.JButton();
 
         setClosable(true);
+        setIconifiable(true);
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
-        jLabel1.setText("RUT:");
+        jLabel1.setText("RUT (sin puntos):");
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jLabel2.setText("NOMBRE:");
@@ -67,7 +68,7 @@ public class jiFrame_agregarCliente extends javax.swing.JInternalFrame {
 
         btnAgregar.setFont(new java.awt.Font("SansSerif", 1, 16)); // NOI18N
         btnAgregar.setText("Agregar");
-        btnAgregar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAgregar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgregarActionPerformed(evt);
@@ -94,7 +95,7 @@ public class jiFrame_agregarCliente extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(121, 121, 121)
                         .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,7 +133,7 @@ public class jiFrame_agregarCliente extends javax.swing.JInternalFrame {
         String fono = this.txtFono.getText().trim();
         
         //erorres
-       List<String> errores = new ArrayList<>();
+        List<String> errores = new ArrayList<>();
        
        //valido los valores
        if (rut.isEmpty() || nombre.isEmpty() || fono.isEmpty()){
@@ -140,11 +141,11 @@ public class jiFrame_agregarCliente extends javax.swing.JInternalFrame {
        }
        if (rut.length() > 10) {
            errores.add("- El rut no puede ser mayor a 10 digitos");
+       } 
+       if (nombre.length() > 25) {
+           errores.add("- El nombre no puede ser mayor a 25 caracteres");
        }
-       if (nombre.length() > 35) {
-           errores.add("- El nombre no puede ser mayor a 35 caracteres");
-       }
-       if (fono.length() > 12) {
+       if (fono.length() > 25) {
            errores.add("- El fono no puede ser mayor a 12 números");
        }
        //el fono es un número?
