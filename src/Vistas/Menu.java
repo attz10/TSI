@@ -22,8 +22,9 @@ public class Menu extends javax.swing.JFrame {
     jiFrame_agregarCliente jiAgregar = new jiFrame_agregarCliente();
     jiFrame_borrarEditarCliente jiEditar = new jiFrame_borrarEditarCliente();
     jiFrame_listarClientes jiListar = new jiFrame_listarClientes();
-    
     //vistas para la administracion de vehículos
+    jFrame_agregarAuto jAgregarVehiculo = new jFrame_agregarAuto();
+    jFrame_borrarAuto jBorrarAuto = new jFrame_borrarAuto();
     
     
     public Menu() {
@@ -296,11 +297,25 @@ public class Menu extends javax.swing.JFrame {
     //btn editar y borrar vehiculo
     private void jmiEditDeleteVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiEditDeleteVehiculoActionPerformed
         // TODO add your handling code here:
+        PanelDeEscritorio.add(jBorrarAuto);
+        //centro panel
+        Dimension escritorioSize = PanelDeEscritorio.getSize();
+        Dimension frameSize = jiEditar.getSize();
+        jBorrarAuto.setLocation((escritorioSize.width - frameSize.width)/2, (escritorioSize.height- escritorioSize.height)/2);
+        //muestro el panel
+        this.jBorrarAuto.show();
     }//GEN-LAST:event_jmiEditDeleteVehiculoActionPerformed
 
     //btn agregar vehiculo
     private void jmiAgregarVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiAgregarVehiculoActionPerformed
         // TODO add your handling code here:
+        PanelDeEscritorio.add(jAgregarVehiculo);
+        //centro panel
+        Dimension escritorioSize = PanelDeEscritorio.getSize();
+        Dimension frameSize = jiEditar.getSize();
+        jAgregarVehiculo.setLocation((escritorioSize.width - frameSize.width)/2, (escritorioSize.height- escritorioSize.height)/2);
+        //muestro el panel
+        this.jAgregarVehiculo.show();
     }//GEN-LAST:event_jmiAgregarVehiculoActionPerformed
 
     //btn listar vehículos

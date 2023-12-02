@@ -32,6 +32,10 @@ public class Vehiculo {
         this.rut_cliente = rut_cliente;
     }
     
+    public Vehiculo(String patente){
+        this.patente = patente;
+    }
+    
     //gets y sets
     public String getPatente(){
         return patente;
