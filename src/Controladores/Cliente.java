@@ -7,6 +7,7 @@ package Controladores;
 //librerias
 import javax.swing.JOptionPane;
 import java.sql.ResultSet;
+import java.lang.Math;
 
 /**
  *
@@ -18,6 +19,16 @@ public class Cliente {
     private String rut_cliente;
     private String nombre;
     private String fono;
+    private boolean validado=false;
+    
+    public boolean isValidado() {
+        return validado;
+    }
+
+    public void setValidado(boolean validado) {
+        this.validado = validado;
+    }
+    
     
     //constructor
     public Cliente(String rut_cliente, String nombre, String fono) {
@@ -51,6 +62,43 @@ public class Cliente {
         this.fono = fono;
     }
     
+    //validar el rut de cliente
+    public void validarRut(){
+        String rutInvertido=this.rut_cliente.substring(0,this.rut_cliente.length()-1);
+        StringBuilder sb = new StringBuilder(rutInvertido);
+        String invertida = sb.reverse().toString();
+        String [] cadena = invertida.split("");
+        String verificar;
+        //////////////////////
+        double suma=0;
+        int incremento=2;
+        for (int i = 0; i < invertida.length(); i++) {
+            suma += Integer.parseInt(cadena[i]) * incremento;
+            if(incremento == 7){
+                incremento = 2;
+            }else{
+                incremento++;
+            }
+        }
+        
+        double valor1 = Math.floor(suma / 11);
+        double valor2 = suma - (valor1 * 11);
+        double v = 11 - valor2;
+        
+        if(v == 10){
+            verificar = "k";
+        }else if(v >= 11){
+            verificar = "0";
+        }
+        
+        verificar = String.valueOf(v);
+        char ultimo = this.rut_cliente.charAt(this.rut_cliente.length()-1);
+        
+        if(verificar.equals(ultimo)){
+            this.validado = true;
+        }
+        
+    }
     //insertado de un nuevo cliente
     public void insertarCliente(){
         try {
