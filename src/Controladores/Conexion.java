@@ -25,6 +25,9 @@ public class Conexion {
     public static Statement stm;
     public static Boolean buscarCliente;
     public static Boolean buscarVehiculo;
+    public static Boolean buscarProducto;
+    public static Boolean buscarServicio;
+    public static String rut_user;
      
     //conectar a la DB
     public static void conectar(){

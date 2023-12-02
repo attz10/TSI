@@ -88,7 +88,7 @@ public class jiFrame_listarClientes extends javax.swing.JInternalFrame {
         try {
             //conecto a la DB y hago un query de select *
             Conexion.buscarCliente=false;
-            String sql = "select * from clientes";
+            String sql = "select * from clientes where is_deleted = "+false+" ";
             Conexion.conectar();
             Conexion.stm = Conexion.con.prepareStatement(sql);
             ResultSet rs = Conexion.stm.executeQuery(sql);

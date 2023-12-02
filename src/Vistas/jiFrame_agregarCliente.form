@@ -79,7 +79,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="SansSerif" size="12" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="RUT (sin puntos ni gui&#xf3;n):"/>
+        <Property name="text" type="java.lang.String" value="RUT (sin puntos):"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">

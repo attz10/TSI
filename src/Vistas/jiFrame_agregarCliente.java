@@ -52,7 +52,7 @@ public class jiFrame_agregarCliente extends javax.swing.JInternalFrame {
         setIconifiable(true);
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
-        jLabel1.setText("RUT (sin puntos ni guión):");
+        jLabel1.setText("RUT (sin puntos):");
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jLabel2.setText("NOMBRE:");

@@ -230,7 +230,7 @@ public class jiFrame_borrarEditarCliente extends javax.swing.JInternalFrame {
         else {
             try {
                 //existe el cliente?
-                Cliente cliente = new Cliente(this.txtRutCliente.getText(),"xxx","xxx");
+                Cliente cliente = new Cliente(rut,"xxx","xxx");
                 cliente.existCliente();
                 //SI EXISTE, lo borro
                 if(Conexion.buscarCliente){

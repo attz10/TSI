@@ -132,11 +132,11 @@ public class Cliente {
         }
     }
     
-    //borrar un cliente
+    //borrar un cliente (usando soft delete)
     public void borrarCliente(){
         try {
             //intento borrar cliente
-            String sql = "delete from clientes where rut = '"+rut_cliente+"'";
+            String sql = "update clientes set is_deleted = "+true+" where rut = '"+rut_cliente+"' ";
             Conexion.conectar();
             Conexion.stm = Conexion.con.prepareStatement(sql);
             Conexion.stm.execute(sql);
@@ -154,7 +154,7 @@ public class Cliente {
         try {
             //intento buscar el cliente
             Conexion.buscarCliente=false;
-            String sql = "select * from clientes where rut = '"+rut_cliente+"'";
+            String sql = "select * from clientes where rut = '"+rut_cliente+"' ";
             Conexion.conectar();
             Conexion.stm = Conexion.con.prepareStatement(sql);
             ResultSet rs = Conexion.stm.executeQuery(sql);
