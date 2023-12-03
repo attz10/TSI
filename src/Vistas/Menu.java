@@ -60,7 +60,6 @@ public class Menu extends javax.swing.JFrame {
         jMenuServicios = new javax.swing.JMenu();
         jmiEditDeleteServicio = new javax.swing.JMenuItem();
         jmiAgregarServicio = new javax.swing.JMenuItem();
-        jmiListarServicio = new javax.swing.JMenuItem();
         jMenuVentas = new javax.swing.JMenu();
         jmiRealizarVenta = new javax.swing.JMenuItem();
         jmiListarVentas = new javax.swing.JMenuItem();
@@ -201,10 +200,6 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         jMenuServicios.add(jmiAgregarServicio);
-
-        jmiListarServicio.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
-        jmiListarServicio.setText("Listar Servicios");
-        jMenuServicios.add(jmiListarServicio);
 
         jMenuBar1.add(jMenuServicios);
 
@@ -426,7 +421,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmiEditDeleteServicio;
     private javax.swing.JMenuItem jmiEditDeleteVehiculo;
     private javax.swing.JMenuItem jmiListarClientes;
-    private javax.swing.JMenuItem jmiListarServicio;
     private javax.swing.JMenuItem jmiListarVentas;
     private javax.swing.JMenuItem jmiRealizarVenta;
     private javax.swing.JMenuItem jmiSalir;
