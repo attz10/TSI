@@ -52,7 +52,6 @@ public class Menu extends javax.swing.JFrame {
         jMenuVehiculos = new javax.swing.JMenu();
         jmiEditDeleteVehiculo = new javax.swing.JMenuItem();
         jmiAgregarVehiculo = new javax.swing.JMenuItem();
-        jmiListarVehiculos = new javax.swing.JMenuItem();
         jMenuBodega = new javax.swing.JMenu();
         jmiEditDeleteProducto = new javax.swing.JMenuItem();
         jmiAgregarProducto = new javax.swing.JMenuItem();
@@ -75,16 +74,17 @@ public class Menu extends javax.swing.JFrame {
         PanelDeEscritorio.setLayout(PanelDeEscritorioLayout);
         PanelDeEscritorioLayout.setHorizontalGroup(
             PanelDeEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 650, Short.MAX_VALUE)
+            .addGap(0, 750, Short.MAX_VALUE)
         );
         PanelDeEscritorioLayout.setVerticalGroup(
             PanelDeEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 450, Short.MAX_VALUE)
+            .addGap(0, 500, Short.MAX_VALUE)
         );
 
         jMenuBar1.setBackground(new java.awt.Color(204, 204, 204));
         jMenuBar1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jMenuBar1.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        jMenuBar1.setMargin(new java.awt.Insets(0, 40, 0, 0));
         jMenuBar1.setPreferredSize(new java.awt.Dimension(150, 50));
 
         jMenuClientes.setText("Clientes");
@@ -152,15 +152,6 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenuVehiculos.add(jmiAgregarVehiculo);
 
-        jmiListarVehiculos.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
-        jmiListarVehiculos.setText("Listar vehículos");
-        jmiListarVehiculos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmiListarVehiculosActionPerformed(evt);
-            }
-        });
-        jMenuVehiculos.add(jmiListarVehiculos);
-
         jMenuBar1.add(jMenuVehiculos);
 
         jMenuBodega.setText("Bodega");
@@ -194,6 +185,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuServicios.setText("Servicios");
         jMenuServicios.setFont(new java.awt.Font("SansSerif", 1, 22)); // NOI18N
+        jMenuServicios.setMargin(new java.awt.Insets(2, 10, 2, 10));
 
         jmiEditDeleteServicio.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jmiEditDeleteServicio.setText("Editar y borrar servicio");
@@ -312,7 +304,7 @@ public class Menu extends javax.swing.JFrame {
         PanelDeEscritorio.add(jBorrarAuto);
         //centro panel
         Dimension escritorioSize = PanelDeEscritorio.getSize();
-        Dimension frameSize = jiEditar.getSize();
+        Dimension frameSize = jBorrarAuto.getSize();
         jBorrarAuto.setLocation((escritorioSize.width - frameSize.width)/2, (escritorioSize.height- escritorioSize.height)/2);
         //muestro el panel
         this.jBorrarAuto.show();
@@ -324,16 +316,11 @@ public class Menu extends javax.swing.JFrame {
         PanelDeEscritorio.add(jAgregarVehiculo);
         //centro panel
         Dimension escritorioSize = PanelDeEscritorio.getSize();
-        Dimension frameSize = jiEditar.getSize();
+        Dimension frameSize = jAgregarVehiculo.getSize();
         jAgregarVehiculo.setLocation((escritorioSize.width - frameSize.width)/2, (escritorioSize.height- escritorioSize.height)/2);
         //muestro el panel
         this.jAgregarVehiculo.show();
     }//GEN-LAST:event_jmiAgregarVehiculoActionPerformed
-
-    //btn listar vehículos
-    private void jmiListarVehiculosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiListarVehiculosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jmiListarVehiculosActionPerformed
 
     private void jmiEditDeleteProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiEditDeleteProductoActionPerformed
         // TODO add your handling code here:
@@ -412,7 +399,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmiListarClientes;
     private javax.swing.JMenuItem jmiListarProductos;
     private javax.swing.JMenuItem jmiListarServicio;
-    private javax.swing.JMenuItem jmiListarVehiculos;
     private javax.swing.JMenuItem jmiListarVentas;
     private javax.swing.JMenuItem jmiRealizarVenta;
     private javax.swing.JMenuItem jmiSalir;

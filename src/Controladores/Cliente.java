@@ -19,6 +19,7 @@ public class Cliente {
     private String rut_cliente;
     private String nombre;
     private String fono;
+    private boolean borrado;
     private boolean validado = false;
     
     //constructor
@@ -59,6 +60,14 @@ public class Cliente {
 
     public void setFono(String fono) {
         this.fono = fono;
+    }
+    
+    public void setBorrado(boolean borrado){
+        this.borrado =  borrado;
+    }
+    
+    public boolean getBorrado(){
+        return borrado;
     }
     
     //validar el rut de cliente
@@ -102,7 +111,7 @@ public class Cliente {
     public void insertarCliente(){
         try {
             //intento insertado del cliente
-            String sql = "insert into clientes values('"+rut_cliente+"','"+nombre+"','"+fono+"')";
+            String sql = "insert into clientes values('"+rut_cliente+"','"+nombre+"','"+fono+"', "+false+")";
             Conexion.conectar();
             Conexion.stm = Conexion.con.prepareStatement(sql);
             Conexion.stm.execute(sql);
@@ -164,12 +173,30 @@ public class Cliente {
                 rut_cliente = rs.getString(1);
                 nombre= rs.getString(2);
                 fono = rs.getString(3);
+                borrado = rs.getBoolean(4);
             }
             Conexion.desconectar();
         } 
         //no existe
         catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error, no existe el cliente", "Buscar un cliente", 2);
+        }
+    }
+    
+    //restaurar un cliente
+    public void restaurarCliente(){
+        try{
+            //intento restaurar al cliente
+            String sql = "update clientes set is_deleted = "+false+" where rut = '"+rut_cliente+"' ";
+            Conexion.conectar();
+            Conexion.stm = Conexion.con.prepareStatement(sql);
+            Conexion.stm.execute(sql);
+            JOptionPane.showMessageDialog(null, "Cliente restaurado correctamente", "Restaurar un cliente", 1);
+            Conexion.desconectar();
+        }
+        //hubo un erro
+        catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Error, no se restauró el cliente", "Restaurar un cliente", 2);
         }
     }
 }

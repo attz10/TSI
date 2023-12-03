@@ -21,8 +21,9 @@ public class Vehiculo {
     private String modelo;
     private String comentario;
     private String rut_cliente;
+    private boolean borrado;
     
-    //constructor
+    //constructores
     public Vehiculo(String patente, String marca, String color, String modelo, String comentario, String rut_cliente){
         this.patente = patente;
         this.marca = marca;
@@ -85,12 +86,20 @@ public class Vehiculo {
         this.rut_cliente = rutCliente;
     }
     
+    public void setBorrado(boolean borrado){
+        this.borrado =  borrado;
+    }
+    
+    public boolean getBorrado(){
+        return borrado;
+    }
+    
     //insertar nuevo vehiculo
     public void insertarVehiculo(){
         try{
             //intento guardar vehiculo
             String sql = "insert into vehiculos values ('"+patente+"', '"+marca+"', '"+color+"', '"+modelo+"', "
-                            + "'"+comentario+"', '"+rut_cliente+"')";
+                            + " '"+comentario+"', '"+rut_cliente+"', "+false+" )";
             Conexion.conectar();
             Conexion.stm = Conexion.con.prepareStatement(sql);
             Conexion.stm.execute(sql);
@@ -107,8 +116,8 @@ public class Vehiculo {
     public void actualizarVehiculo(){
         try {
             //intento actualizar registro
-            String sql = "update vehiculos set marca = '"+marca+"', color = "+color+", modelo = "+modelo+","
-                    + " comentario = "+comentario+", rut_cliente = "+rut_cliente+" where patente = "+patente+" ";
+            String sql = "update vehiculos set marca = '"+marca+"', color = '"+color+"', modelo = '"+modelo+"',"
+                    + " comentario = '"+comentario+"', rut_cliente = '"+rut_cliente+"' where patente = '"+patente+"' ";
             Conexion.conectar();
             Conexion.stm = Conexion.con.prepareStatement(sql);
             Conexion.stm.execute(sql);
@@ -125,7 +134,7 @@ public class Vehiculo {
     public void borrarVehiculo(){
         try {
             //intento borrar vehiculo
-            String sql = "delete from vehiculos where patente = '"+patente+"'";
+            String sql = "update vehiculos set is_deleted = "+true+" where patente = '"+patente+"' ";
             Conexion.conectar();
             Conexion.stm = Conexion.con.prepareStatement(sql);
             Conexion.stm.execute(sql);
@@ -156,12 +165,30 @@ public class Vehiculo {
                 modelo = rs.getString(4);
                 comentario = rs.getString(5);
                 rut_cliente = rs.getString(6);
+                borrado = rs.getBoolean(7);
             }
             Conexion.desconectar();
         } 
         //no existe
         catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error, no existe el vehiculo", "Buscar un vehiculo", 2);
+        }
+    }
+    
+    //restaurar un vehiculo
+    public void restaurarVehiculo(){
+        try{
+            //intento restaurar al vehiculo
+            String sql = "update vehiculos set is_deleted = "+false+" where patente = '"+patente+"' ";
+            Conexion.conectar();
+            Conexion.stm = Conexion.con.prepareStatement(sql);
+            Conexion.stm.execute(sql);
+            JOptionPane.showMessageDialog(null, "Vehiculo restaurado correctamente", "Restaurar un vehiculo", 1);
+            Conexion.desconectar();
+        }
+        //hubo un erro
+        catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Error, no se restauró el vehiculo", "Restaurar un vehiculo", 2);
         }
     }
 }

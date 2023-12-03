@@ -146,11 +146,11 @@ public class jiFrame_agregarCliente extends javax.swing.JInternalFrame {
            errores.add("- El nombre no puede ser mayor a 25 caracteres");
        }
        if (fono.length() > 25) {
-           errores.add("- El fono no puede ser mayor a 12 números");
+           errores.add("- El fono no puede ser mayor a 25 números");
        }
        //el fono es un número?
        try{
-           int aux = Integer.parseInt(fono);
+           int aux = (int) Integer.parseInt(fono);
        }
        catch (Exception e){
            errores.add("- El fono debe ser númerico");
@@ -168,13 +168,14 @@ public class jiFrame_agregarCliente extends javax.swing.JInternalFrame {
                 //instancio el nuevo cliente
                 Cliente cliente = new Cliente(rut, nombre, fono);
                 cliente.existCliente();
-                cliente.validarRut();
+                //cliente.validarRut();
                 //el cliente ya existe
                 if(Conexion.buscarCliente){
                     JOptionPane.showMessageDialog(null, "El Cliente con rut ("+rut+") YA EXISTE", "Error en insertar cliente", 2);
-                }else if(!cliente.isValidado()){
-                    JOptionPane.showMessageDialog(null, "No corresponde al Digito verficador", "Rut invalido", 2);
                 }
+                //else if(!cliente.isValidado()){
+                //    JOptionPane.showMessageDialog(null, "No corresponde al Digito verficador", "Rut invalido", 2);
+                //}
                 //el cliente no existe, hago el insertado
                 else{
                     cliente.insertarCliente();

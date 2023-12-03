@@ -21,6 +21,16 @@ public class jiFrame_borrarAuto extends javax.swing.JInternalFrame {
      */
     public jiFrame_borrarAuto() {
         initComponents();
+        mostrarVehiculos();
+    }
+    
+    public void limpiar(){
+        txtPatente.setText("");
+        txtColor.setText("");
+        txtMarca.setText("");
+        txtModelo.setText("");
+        txtComentario.setText("");
+        txtRut.setText("");
     }
 
     /**
@@ -35,7 +45,6 @@ public class jiFrame_borrarAuto extends javax.swing.JInternalFrame {
         txtComentario = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaAutos = new javax.swing.JTable();
-        btnDatos = new javax.swing.JButton();
         btnRellenar = new javax.swing.JButton();
         btnBorrar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -45,6 +54,15 @@ public class jiFrame_borrarAuto extends javax.swing.JInternalFrame {
         txtMarca = new javax.swing.JTextField();
         txtColor = new javax.swing.JTextField();
         txtModelo = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        btnRestaurar = new javax.swing.JButton();
+
+        setClosable(true);
+        setIconifiable(true);
 
         tablaAutos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -56,13 +74,7 @@ public class jiFrame_borrarAuto extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(tablaAutos);
 
-        btnDatos.setText("Actualizar datos");
-        btnDatos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDatosActionPerformed(evt);
-            }
-        });
-
+        btnRellenar.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnRellenar.setText("Rellenar Datos");
         btnRellenar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,6 +82,7 @@ public class jiFrame_borrarAuto extends javax.swing.JInternalFrame {
             }
         });
 
+        btnBorrar.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         btnBorrar.setText("BORRRAR");
         btnBorrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -77,8 +90,10 @@ public class jiFrame_borrarAuto extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel1.setText("INGRESE PATENTE DE AUTO: ");
+        jLabel1.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        jLabel1.setText("Patente: ");
 
+        btnEditar.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         btnEditar.setText("EDITAR");
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,87 +101,128 @@ public class jiFrame_borrarAuto extends javax.swing.JInternalFrame {
             }
         });
 
+        txtRut.setEnabled(false);
+
+        txtColor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtColorActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        jLabel3.setText("Marca:");
+
+        jLabel4.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        jLabel4.setText("Color:");
+
+        jLabel5.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        jLabel5.setText("Modelo:");
+
+        jLabel6.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        jLabel6.setText("Rut del dueño: ");
+
+        jLabel7.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        jLabel7.setText("Comentario:");
+
+        btnRestaurar.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        btnRestaurar.setText("RESTAURAR");
+        btnRestaurar.setEnabled(false);
+        btnRestaurar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRestaurarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 721, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jScrollPane1)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(262, 262, 262)
-                                    .addComponent(btnDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel1)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(txtModelo, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
-                                                .addComponent(txtColor)
-                                                .addComponent(txtMarca)
-                                                .addComponent(txtPatente))
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(layout.createSequentialGroup()
-                                                    .addGap(18, 18, 18)
-                                                    .addComponent(btnRellenar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addGap(245, 245, 245))
-                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                    .addGap(255, 255, 255)
-                                                    .addComponent(txtRut, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                        .addComponent(txtComentario, javax.swing.GroupLayout.PREFERRED_SIZE, 558, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(154, 154, 154)
-                                    .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(171, 171, 171)
-                                    .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addContainerGap()))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel1))
+                        .addGap(21, 21, 21)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnRellenar, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtPatente, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtColor, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30)
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7)
+                                    .addComponent(txtRut, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnBorrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnRestaurar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(87, 87, 87))
+                    .addComponent(jScrollPane1))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(txtComentario, javax.swing.GroupLayout.PREFERRED_SIZE, 558, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(88, 88, 88))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 471, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(30, 30, 30)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(btnDatos)
-                    .addGap(32, 32, 32)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel1)
-                        .addComponent(txtPatente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnRellenar))
-                    .addGap(18, 18, 18)
-                    .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addComponent(txtColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtRut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addComponent(txtComentario, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(18, 18, 18)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtPatente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnRellenar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5)
+                            .addComponent(txtRut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6))
+                        .addGap(20, 20, 20)
+                        .addComponent(jLabel7))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
                         .addComponent(btnBorrar)
-                        .addComponent(btnEditar))
-                    .addContainerGap(31, Short.MAX_VALUE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(btnEditar)
+                        .addGap(15, 15, 15)
+                        .addComponent(btnRestaurar)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtComentario, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatosActionPerformed
-        // TODO add your handling code here:
+    //mostrar datos
+    public void mostrarVehiculos(){
         try {
             //conecto a la DB y hago un query de select *
-            String sql = "select * from vehiculos";
+            String sql = "select * from vehiculos where is_deleted = "+false+" ";
             Conexion.conectar();
             Conexion.stm = Conexion.con.prepareStatement(sql);
             ResultSet rs = Conexion.stm.executeQuery(sql);
@@ -178,12 +234,13 @@ public class jiFrame_borrarAuto extends javax.swing.JInternalFrame {
             modelo.addColumn("MARCA");
             modelo.addColumn("COLOR");
             modelo.addColumn("MODELO");
-            modelo.addColumn("RutCLiente");
+            modelo.addColumn("Comentario");
+            modelo.addColumn("Dueño");
 
             //añado los datos a las columnas
-            Object [] fila = new Object[5];
+            Object [] fila = new Object[6];
             while(rs.next()){
-                for(int i = 0; i<5;i++){
+                for(int i = 0; i<6;i++){
                     fila[i] = rs.getObject(i+1);
                     //modelo.addRow(fila);
                     //tabla.setModel(modelo);
@@ -197,61 +254,82 @@ public class jiFrame_borrarAuto extends javax.swing.JInternalFrame {
         catch (Exception e) {
             System.out.println(e);
         }
-    }//GEN-LAST:event_btnDatosActionPerformed
-
+    }
+    
     private void btnRellenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRellenarActionPerformed
         // TODO add your handling code here:
         String patente = this.txtPatente.getText().trim();
-
-        //hay datos para buscar
-        try {
-
-            Vehiculo vehiculo = new Vehiculo(patente);
-            vehiculo.existeVehiculo();
-
-            if(Conexion.buscarVehiculo){
-                this.txtPatente.setText(vehiculo.getPatente());
-                this.txtColor.setText(vehiculo.getColor());
-                this.txtMarca.setText(vehiculo.getMarca());
-                this.txtModelo.setText(vehiculo.getModelo());
-                this.txtComentario.setText(vehiculo.getComentario());
-                this.txtRut.setText(vehiculo.getRutCliente());
-            }
-
-            else{
-                JOptionPane.showMessageDialog(this,"vehiculo no existe","Buscar Vehiculo",2);
-            }
+        
+        //valido si está vacia
+        if (patente.isEmpty()) {
+            JOptionPane.showMessageDialog(this,"No deje la patente vacia","Eliminar vehiculo",2);
         }
-        //error
-        catch (Exception e) {
+        //hay patente
+        else {
+            try {
+                Vehiculo vehiculo = new Vehiculo(patente);
+                vehiculo.existeVehiculo();
+                if(Conexion.buscarVehiculo){
+                    this.txtPatente.setText(vehiculo.getPatente());
+                    this.txtColor.setText(vehiculo.getColor());
+                    this.txtMarca.setText(vehiculo.getMarca());
+                    this.txtModelo.setText(vehiculo.getModelo());
+                    this.txtComentario.setText(vehiculo.getComentario());
+                    this.txtRut.setText(vehiculo.getRutCliente());
+                    comprobarVehiculo(vehiculo.getBorrado());
+                }
+                else{
+                    JOptionPane.showMessageDialog(this,"vehiculo no existe","Buscar Vehiculo",2);
+                }
+            }
             //error
+            catch (Exception e) {
+                //error
+            }
         }
-
     }//GEN-LAST:event_btnRellenarActionPerformed
 
+    public void comprobarVehiculo(boolean borrado){
+        if (borrado){
+            btnBorrar.setEnabled(false);
+            btnRestaurar.setEnabled(true);
+        }
+        else{
+            btnBorrar.setEnabled(true);
+            btnRestaurar.setEnabled(false);
+        }
+    }
+    
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
         // TODO add your handling code here:
+        //obtengo patente
         String patente = this.txtPatente.getText().trim();
-
-        try {
-
-            Vehiculo vehiculo = new Vehiculo(patente);
-            vehiculo.existeVehiculo();
-            //SI EXISTE, lo borro
-            if(Conexion.buscarVehiculo){
-                vehiculo.borrarVehiculo();
-                //JOptionPane.showMessageDialog(this,"cliente eliminado","Eliminar",3);
+        
+        //valido si está vacia
+        if (patente.isEmpty()) {
+            JOptionPane.showMessageDialog(this,"No deje la patente vacia","Eliminar vehiculo",2);
+        }
+        //no está vacia
+        else{
+            try {
+                Vehiculo vehiculo = new Vehiculo(patente);
+                vehiculo.existeVehiculo();
+                //SI EXISTE, lo borro
+                if(Conexion.buscarVehiculo){
+                    vehiculo.borrarVehiculo();
+                    limpiar();
+                    mostrarVehiculos();
+                }
+                //NO EXISTE
+                else{
+                    JOptionPane.showMessageDialog(this,"vehiculo no encontrado","Eliminar vehiculo",2);
+                }
             }
-            //NO EXISTE
-            else{
-                JOptionPane.showMessageDialog(this,"vehiculo no encontrado","Eliminar vehiculo",2);
+            //hay un error
+            catch (Exception e) {
+                //error
             }
         }
-        //hay un error
-        catch (Exception e) {
-            //error
-        }
-
     }//GEN-LAST:event_btnBorrarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
@@ -270,7 +348,8 @@ public class jiFrame_borrarAuto extends javax.swing.JInternalFrame {
             //SI EXISTE, actualizo el registro
             if(Conexion.buscarVehiculo){
                 vehiculo.actualizarVehiculo();
-                //JOptionPane.showMessageDialog(this,"Cliente actualizado correctamente","Actualizar",1);
+                limpiar();
+                mostrarVehiculos();
             }
             //NO EXISTE
             else{
@@ -284,13 +363,56 @@ public class jiFrame_borrarAuto extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_btnEditarActionPerformed
 
+    private void txtColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtColorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtColorActionPerformed
+
+    private void btnRestaurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestaurarActionPerformed
+        // TODO add your handling code here:
+        
+        //obtengo datos
+        String patente = this.txtPatente.getText().trim();
+        
+        //hay datos para restaurar?
+        if (patente.isEmpty()) {
+             JOptionPane.showMessageDialog(this,"No deje espacios en blanco","Restaurar vehiculo",2);
+        }
+        //no hay errores 
+        else {
+            try {
+                //existe el Vehiculo?
+                Vehiculo vehiculo = new Vehiculo(patente);
+                vehiculo.existeVehiculo();
+                //SI EXISTE, restauro el registro
+                if(Conexion.buscarVehiculo){
+                    vehiculo.restaurarVehiculo();
+                    limpiar();
+                    mostrarVehiculos();
+                }
+                //NO EXISTE
+                else{
+                    JOptionPane.showMessageDialog(this,"cliente no encontrado","Actualizar cliente",1);
+                }
+            } 
+            //hay un error
+            catch (Exception e) { 
+                //error
+            }
+        }
+    }//GEN-LAST:event_btnRestaurarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBorrar;
-    private javax.swing.JButton btnDatos;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnRellenar;
+    private javax.swing.JButton btnRestaurar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tablaAutos;
     private javax.swing.JTextField txtColor;

@@ -23,6 +23,7 @@ public class jiFrame_listarClientes extends javax.swing.JInternalFrame {
     
     public jiFrame_listarClientes() {
         initComponents();
+        mostrarClientes();
     }
 
     /**
@@ -82,9 +83,8 @@ public class jiFrame_listarClientes extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    //listar los datos
-    private void btnDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatosActionPerformed
-        // TODO add your handling code here:
+    //rellenar tabla
+    public void mostrarClientes(){
         try {
             //conecto a la DB y hago un query de select *
             Conexion.buscarCliente=false;
@@ -117,6 +117,12 @@ public class jiFrame_listarClientes extends javax.swing.JInternalFrame {
         catch (Exception e) {
             //error
         }
+    }
+    
+    //listar los datos
+    private void btnDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatosActionPerformed
+        // TODO add your handling code here:
+        mostrarClientes();
     }//GEN-LAST:event_btnDatosActionPerformed
 
 

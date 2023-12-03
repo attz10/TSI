@@ -23,6 +23,20 @@ public class jiFrame_borrarEditarCliente extends javax.swing.JInternalFrame {
         initComponents();
     }
     
+    //cliente no disponible?
+    public void comprobarCliente(boolean borrado){
+        //cliente borrado?
+        if (borrado){
+            btnRestaurar.setEnabled(true);
+            btnEliminar.setEnabled(false);
+        }
+        //no está borrado
+        else {
+            btnRestaurar.setEnabled(false);
+            btnEliminar.setEnabled(true);
+        }
+    }
+    
     //limpiar formulario
     private void limpiar(){
         this.txtRutCliente.setText("");
@@ -43,6 +57,7 @@ public class jiFrame_borrarEditarCliente extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         txtRutCliente = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
+        btnRestaurar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -60,12 +75,27 @@ public class jiFrame_borrarEditarCliente extends javax.swing.JInternalFrame {
         jLabel1.setText("RUT:");
         jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
+        txtRutCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtRutClienteActionPerformed(evt);
+            }
+        });
+
         btnBuscar.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         btnBuscar.setText("BUSCAR");
         btnBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarActionPerformed(evt);
+            }
+        });
+
+        btnRestaurar.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        btnRestaurar.setText("RESTAURAR CLIENTE");
+        btnRestaurar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnRestaurar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRestaurarActionPerformed(evt);
             }
         });
 
@@ -81,6 +111,10 @@ public class jiFrame_borrarEditarCliente extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addComponent(btnBuscar)
                 .addGap(31, 31, 31))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(98, 98, 98)
+                .addComponent(btnRestaurar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -90,7 +124,9 @@ public class jiFrame_borrarEditarCliente extends javax.swing.JInternalFrame {
                     .addComponent(jLabel1)
                     .addComponent(txtRutCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBuscar))
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addComponent(btnRestaurar)
+                .addContainerGap())
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos"));
@@ -204,6 +240,7 @@ public class jiFrame_borrarEditarCliente extends javax.swing.JInternalFrame {
                     this.txtRutCliente.setText(cliente.getRut_cliente());
                     this.txtNombreCliente.setText(cliente.getNombre());
                     this.txtFonoCliente.setText(cliente.getFono()); 
+                    comprobarCliente(cliente.getBorrado());
                 }
                 //el cliente NO EXISTE
                 else{
@@ -289,11 +326,52 @@ public class jiFrame_borrarEditarCliente extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnActualizarActionPerformed
 
+    private void btnRestaurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestaurarActionPerformed
+        // TODO add your handling code here:
+        
+        //obtengo datos
+        String rut = this.txtRutCliente.getText().trim();
+        String nombre = this.txtNombreCliente.getText().trim();
+        String fono = this.txtFonoCliente.getText().trim();
+        
+        //hay datos para restaurar?
+        if (rut.isEmpty()) {
+             JOptionPane.showMessageDialog(this,"No deje espacios en blanco","Restaurar cliente",2);
+        }
+        //no hay errores 
+        else {
+            try {
+                //existe el cliente?
+                Cliente cliente = new Cliente(rut,"xxx","xxx");
+                cliente.existCliente();
+                //SI EXISTE, restauro el registro
+                if(Conexion.buscarCliente){
+                    cliente.restaurarCliente();
+                    limpiar();
+                    //JOptionPane.showMessageDialog(this,"Cliente actualizado correctamente","Actualizar",1);
+                }
+                //NO EXISTE
+                else{
+                    JOptionPane.showMessageDialog(this,"cliente no encontrado","Actualizar cliente",1);
+                }
+            } 
+            //hay un error
+            catch (Exception e) { 
+                //error
+            }
+        }
+    }//GEN-LAST:event_btnRestaurarActionPerformed
+
+    private void txtRutClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRutClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtRutClienteActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnRestaurar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
