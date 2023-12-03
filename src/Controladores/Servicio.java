@@ -29,6 +29,10 @@ public class Servicio {
         this.tiempo_ejecucion =  tiempoEjecucion;
     }
     
+    public Servicio(int id){
+        this.id = id;
+    }
+    
     //gets y sets
     public int getId(){
         return id;
@@ -74,7 +78,7 @@ public class Servicio {
     public void insertarServicio(){
         try {
             //intento insertado del servicio
-            String sql = "insert into servicios values ('"+nombre+"', '"+descripcion+"', "+valor+", "+tiempo_ejecucion+") ";
+            String sql = "insert into servicios values ("+id+",'"+nombre+"', '"+descripcion+"', "+valor+", "+tiempo_ejecucion+") ";
             Conexion.conectar();
             Conexion.stm = Conexion.con.prepareStatement(sql);
             Conexion.stm.execute(sql);
@@ -123,7 +127,7 @@ public class Servicio {
     }
     
     //buscar servicio
-    public void existServicio(){
+    public void existeServicio(){
         try {
             //intento buscar el servicio
             Conexion.buscarServicio = false;

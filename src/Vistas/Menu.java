@@ -28,7 +28,9 @@ public class Menu extends javax.swing.JFrame {
     //vistas para la administracion de productos
     jiFrame_agregarProducto jiAgregarProducto = new jiFrame_agregarProducto();
     jiFrame_borrarProducto jiBorrarProducto = new jiFrame_borrarProducto();
-    
+    //vistas para la administracion de servicios
+    jiFrame_agregarServicio jiAgregarServicio = new jiFrame_agregarServicio();
+    jiFrame_modificarServicio jiEditarServicio = new jiFrame_modificarServicio();
     
     public Menu() {
         initComponents();
@@ -184,10 +186,20 @@ public class Menu extends javax.swing.JFrame {
 
         jmiEditDeleteServicio.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jmiEditDeleteServicio.setText("Editar y borrar servicio");
+        jmiEditDeleteServicio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiEditDeleteServicioActionPerformed(evt);
+            }
+        });
         jMenuServicios.add(jmiEditDeleteServicio);
 
         jmiAgregarServicio.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jmiAgregarServicio.setText("Agregar servicio");
+        jmiAgregarServicio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiAgregarServicioActionPerformed(evt);
+            }
+        });
         jMenuServicios.add(jmiAgregarServicio);
 
         jmiListarServicio.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
@@ -338,6 +350,28 @@ public class Menu extends javax.swing.JFrame {
         //muestro el panel
         this.jiAgregarProducto.show();
     }//GEN-LAST:event_jmiAgregarProductoActionPerformed
+
+    private void jmiAgregarServicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiAgregarServicioActionPerformed
+        // TODO add your handling code here:
+        PanelDeEscritorio.add(jiAgregarServicio);
+        //centro panel
+        Dimension escritorioSize = PanelDeEscritorio.getSize();
+        Dimension frameSize = jiAgregarServicio.getSize();
+        jiAgregarServicio.setLocation((escritorioSize.width - frameSize.width)/2, (escritorioSize.height- escritorioSize.height)/2);
+        //muestro el panel
+        this.jiAgregarServicio.show();
+    }//GEN-LAST:event_jmiAgregarServicioActionPerformed
+
+    private void jmiEditDeleteServicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiEditDeleteServicioActionPerformed
+        // TODO add your handling code here:
+        PanelDeEscritorio.add(jiEditarServicio);
+        //centro panel
+        Dimension escritorioSize = PanelDeEscritorio.getSize();
+        Dimension frameSize = jiEditarServicio.getSize();
+        jiEditarServicio.setLocation((escritorioSize.width - frameSize.width)/2, (escritorioSize.height- escritorioSize.height)/2);
+        //muestro el panel
+        this.jiEditarServicio.show();
+    }//GEN-LAST:event_jmiEditDeleteServicioActionPerformed
 
     /**
      * @param args the command line arguments
