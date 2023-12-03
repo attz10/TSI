@@ -200,4 +200,20 @@ public class Producto {
         }
     }
     
+    //restar cantidad de producto usado
+    public void restarCantProducto(int resta){
+        try{
+            //intento restar al producto su cantidad
+            String sql = "update productos set cantidad = cantidad - "+resta+" where id = "+id+" ";
+            Conexion.conectar();
+            Conexion.stm = Conexion.con.prepareStatement(sql);
+            Conexion.stm.execute(sql);
+            //JOptionPane.showMessageDialog(null, "Producto restado correctamente", "Restar cantidad de un producto", 1);
+            Conexion.desconectar();
+        }
+        //hubo un error
+        catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Error, no se restó el producto", "Restar cantidad de un producto", 2);
+        }
+    }
 }
