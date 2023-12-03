@@ -19,8 +19,7 @@ public class Bitacora {
     private String comentario;
     private String rutUsuario;
 
-    public Bitacora(int idBitacora, String patente, int idProducto, int idServicio, String comentario, String rutUsuario) {
-        this.idBitacora = idBitacora;
+    public Bitacora(String patente, int idProducto, int idServicio, String comentario, String rutUsuario) {
         this.patente = patente;
         this.idProducto = idProducto;
         this.idServicio = idServicio;
