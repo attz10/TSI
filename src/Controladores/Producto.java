@@ -23,13 +23,25 @@ public class Producto {
     private String marca;
     
     //constructor
-    public Producto(int id, String nombre, int cantidad, int costoUnitatrio, String tipo, String marca){
+    public Producto(int id,String nombre, int cantidad, int costoUnitatrio, String tipo, String marca){
         this.id = id;
         this.nombre = nombre;
         this.cantidad = cantidad;
         this.costo_unitario = costoUnitatrio;
         this.tipo = tipo;
         this.marca = marca;
+    }
+    
+    public Producto(String nombre, int cantidad, int costoUnitatrio, String tipo, String marca){
+        this.nombre = nombre;
+        this.cantidad = cantidad;
+        this.costo_unitario = costoUnitatrio;
+        this.tipo = tipo;
+        this.marca = marca;
+    }
+    
+    public Producto(int id){
+        this.id = id;
     }
     
     //gets y sets
@@ -135,7 +147,7 @@ public class Producto {
     }
     
     //buscar producto
-    public void existProducto(){
+    public void existeProducto(){
         try {
             //intento buscar el producto
             Conexion.buscarProducto = false;

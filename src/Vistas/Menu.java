@@ -25,6 +25,9 @@ public class Menu extends javax.swing.JFrame {
     //vistas para la administracion de vehículos
     jiFrame_agregarAuto jAgregarVehiculo = new jiFrame_agregarAuto();
     jiFrame_borrarAuto jBorrarAuto = new jiFrame_borrarAuto();
+    //vistas para la administracion de productos
+    jiFrame_agregarProducto jiAgregarProducto = new jiFrame_agregarProducto();
+    jiFrame_borrarProducto jiBorrarProducto = new jiFrame_borrarProducto();
     
     
     public Menu() {
@@ -80,13 +83,12 @@ public class Menu extends javax.swing.JFrame {
         );
 
         jMenuBar1.setBackground(new java.awt.Color(204, 204, 204));
-        jMenuBar1.setForeground(new java.awt.Color(0, 0, 0));
         jMenuBar1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jMenuBar1.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jMenuBar1.setPreferredSize(new java.awt.Dimension(150, 50));
 
         jMenuClientes.setText("Clientes");
-        jMenuClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenuClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jMenuClientes.setFont(new java.awt.Font("SansSerif", 1, 22)); // NOI18N
         jMenuClientes.setMargin(new java.awt.Insets(2, 10, 2, 10));
         jMenuClientes.addActionListener(new java.awt.event.ActionListener() {
@@ -97,7 +99,7 @@ public class Menu extends javax.swing.JFrame {
 
         jmiEditDeleteCliente.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jmiEditDeleteCliente.setText("Editar y Borrar Cliente");
-        jmiEditDeleteCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jmiEditDeleteCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jmiEditDeleteCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmiEditDeleteClienteActionPerformed(evt);
@@ -107,7 +109,7 @@ public class Menu extends javax.swing.JFrame {
 
         jmiAgregarCliente.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jmiAgregarCliente.setText("Agregar Cliente");
-        jmiAgregarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jmiAgregarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jmiAgregarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmiAgregarClienteActionPerformed(evt);
@@ -117,7 +119,7 @@ public class Menu extends javax.swing.JFrame {
 
         jmiListarClientes.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jmiListarClientes.setText("Listar Clientes");
-        jmiListarClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jmiListarClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jmiListarClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmiListarClientesActionPerformed(evt);
@@ -128,7 +130,7 @@ public class Menu extends javax.swing.JFrame {
         jMenuBar1.add(jMenuClientes);
 
         jMenuVehiculos.setText("Vehículos");
-        jMenuVehiculos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenuVehiculos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jMenuVehiculos.setFont(new java.awt.Font("SansSerif", 1, 22)); // NOI18N
         jMenuVehiculos.setMargin(new java.awt.Insets(2, 10, 2, 10));
 
@@ -162,16 +164,26 @@ public class Menu extends javax.swing.JFrame {
         jMenuBar1.add(jMenuVehiculos);
 
         jMenuBodega.setText("Bodega");
-        jMenuBodega.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenuBodega.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jMenuBodega.setFont(new java.awt.Font("SansSerif", 1, 22)); // NOI18N
         jMenuBodega.setMargin(new java.awt.Insets(2, 10, 2, 10));
 
         jmiEditDeleteProducto.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jmiEditDeleteProducto.setText("Editar y borrar producto");
+        jmiEditDeleteProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiEditDeleteProductoActionPerformed(evt);
+            }
+        });
         jMenuBodega.add(jmiEditDeleteProducto);
 
         jmiAgregarProducto.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jmiAgregarProducto.setText("Agregar producto");
+        jmiAgregarProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiAgregarProductoActionPerformed(evt);
+            }
+        });
         jMenuBodega.add(jmiAgregarProducto);
 
         jmiListarProductos.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
@@ -198,7 +210,7 @@ public class Menu extends javax.swing.JFrame {
         jMenuBar1.add(jMenuServicios);
 
         jMenuVentas.setText("Ventas");
-        jMenuVentas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenuVentas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jMenuVentas.setFont(new java.awt.Font("SansSerif", 1, 22)); // NOI18N
         jMenuVentas.setMargin(new java.awt.Insets(2, 10, 2, 10));
 
@@ -214,13 +226,13 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuSalir.setText("salir");
         jMenuSalir.setActionCommand("SALIR");
-        jMenuSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenuSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jMenuSalir.setFont(new java.awt.Font("SansSerif", 2, 16)); // NOI18N
         jMenuSalir.setMargin(new java.awt.Insets(2, 10, 2, 10));
 
         jmiSalir.setFont(new java.awt.Font("SansSerif", 2, 12)); // NOI18N
         jmiSalir.setText("salir");
-        jmiSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jmiSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jmiSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmiSalirActionPerformed(evt);
@@ -322,6 +334,28 @@ public class Menu extends javax.swing.JFrame {
     private void jmiListarVehiculosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiListarVehiculosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jmiListarVehiculosActionPerformed
+
+    private void jmiEditDeleteProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiEditDeleteProductoActionPerformed
+        // TODO add your handling code here:
+        PanelDeEscritorio.add(jiBorrarProducto);
+        //centro panel
+        Dimension escritorioSize = PanelDeEscritorio.getSize();
+        Dimension frameSize = jiEditar.getSize();
+        jiBorrarProducto.setLocation((escritorioSize.width - frameSize.width)/2, (escritorioSize.height- escritorioSize.height)/2);
+        //muestro el panel
+        this.jiBorrarProducto.show();
+    }//GEN-LAST:event_jmiEditDeleteProductoActionPerformed
+
+    private void jmiAgregarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiAgregarProductoActionPerformed
+        // TODO add your handling code here:
+        PanelDeEscritorio.add(jiAgregarProducto);
+        //centro panel
+        Dimension escritorioSize = PanelDeEscritorio.getSize();
+        Dimension frameSize = jiEditar.getSize();
+        jiAgregarProducto.setLocation((escritorioSize.width - frameSize.width)/2, (escritorioSize.height- escritorioSize.height)/2);
+        //muestro el panel
+        this.jiAgregarProducto.show();
+    }//GEN-LAST:event_jmiAgregarProductoActionPerformed
 
     /**
      * @param args the command line arguments

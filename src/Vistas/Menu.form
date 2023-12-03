@@ -149,6 +149,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Editar y borrar producto"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmiEditDeleteProductoActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jmiAgregarProducto">
               <Properties>
@@ -157,6 +160,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Agregar producto"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmiAgregarProductoActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jmiListarProductos">
               <Properties>
