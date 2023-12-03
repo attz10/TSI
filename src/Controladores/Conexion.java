@@ -27,6 +27,7 @@ public class Conexion {
     public static Boolean buscarVehiculo;
     public static Boolean buscarProducto;
     public static Boolean buscarServicio;
+    public static Boolean buscarUser;
     public static String rut_user;
      
     //conectar a la DB

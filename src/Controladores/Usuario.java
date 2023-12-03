@@ -56,13 +56,17 @@ public class Usuario {
         //indicador
         byte index = 0;
         try {
-            //intenti validar el user
+            //intento validar el user
             String sql= "select * from usuarios where usuario='"+usuario+"' and contrasena='"+contrasena+"' ";
             Conexion.conectar();
             Conexion.stm =Conexion.con.prepareStatement(sql);
             ResultSet rs = Conexion.stm.executeQuery(sql);
             //el user existe
             if(rs.next()){
+                rut = rs.getString(1);
+                usuario = rs.getString(2);
+                contrasena = rs.getString(3);
+                Conexion.rut_user = rut;
                 index = 1;
                 if(index==1){
                    return index;

@@ -4,10 +4,13 @@
  */
 package Vistas;
 
+//librerias
 import Controladores.Conexion;
 import Controladores.Producto;
 import javax.swing.table.DefaultTableModel;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -291,38 +294,68 @@ public class jiFrame_borrarProducto extends javax.swing.JInternalFrame {
 
     private void btnRellenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRellenarActionPerformed
         // TODO add your handling code here:
-        int id = Integer.parseInt(this.txtId.getText().trim());
-
-        //hay datos para buscar
-        try {
-
-            Producto producto = new Producto(id);
-            producto.existeProducto();
-            comprobarProducto(producto.getBorrado());
-
-            if(Conexion.buscarProducto){
-                this.txtId.setText(String.valueOf(producto.getId()));
-                this.txtCantidad.setText(String.valueOf(producto.getCantidad()));
-                this.txtNombre.setText(producto.getNombre());
-                this.txtPrecio.setText(String.valueOf(producto.getCostoUnitario()));
-                this.txtTipo.setText(producto.getTipo());
-                this.txtMarca.setText(producto.getMarca());
-            }
-            else{
-                JOptionPane.showMessageDialog(this,"producto no existe","Buscar producto",2);
-            }
+        //obtengo data
+        String auxId = txtId.getText().trim();
+        int id = 0;
+        
+        //erorres
+        List<String> errores = new ArrayList<>();
+        
+        //valido data
+        if (auxId.isEmpty()) {
+            errores.add("- No deje el ID vacio");
         }
-        //error
-        catch (Exception e) {
+        //id numerico?
+        try{
+            id = Integer.parseInt(this.txtId.getText().trim());
+        }
+        catch(Exception ex) {
+            errores.add("- Error, el ID debe ser númerico");
+        }
+        //hay errores?
+        if (!errores.isEmpty()){
+            //hay errores, creo mensaje de error
+            String msgError = String.join("\n", errores);
+            JOptionPane.showMessageDialog(null, msgError, "Error en insertado de producto", 2);
+        }
+        //no hay
+        else {
+            //hay datos para buscar
+            try {
+                Producto producto = new Producto(id);
+                producto.existeProducto();
+                comprobarProducto(producto.getBorrado());
+
+                if(Conexion.buscarProducto){
+                    this.txtId.setText(String.valueOf(producto.getId()));
+                    this.txtCantidad.setText(String.valueOf(producto.getCantidad()));
+                    this.txtNombre.setText(producto.getNombre());
+                    this.txtPrecio.setText(String.valueOf(producto.getCostoUnitario()));
+                    this.txtTipo.setText(producto.getTipo());
+                    this.txtMarca.setText(producto.getMarca());
+                }
+                else{
+                    JOptionPane.showMessageDialog(this,"producto no existe","Buscar producto",2);
+                }
+            }
             //error
+            catch (Exception e) {
+                //error
+            }
         }
     }//GEN-LAST:event_btnRellenarActionPerformed
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
         // TODO add your handling code here:
-        int id = Integer.parseInt(this.txtId.getText().trim());
-
-        try {
+        String auxId = txtId.getText().trim();
+        
+        if (auxId.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "No deje el ID en blanco", "Error en borrado de producto", 2);
+        }
+        //hay id
+        else {
+            try {
+            int id = Integer.parseInt(this.txtId.getText().trim());
             Producto producto = new Producto(id);
             producto.existeProducto();
             //SI EXISTE, lo borro
@@ -335,24 +368,64 @@ public class jiFrame_borrarProducto extends javax.swing.JInternalFrame {
             else{
                 JOptionPane.showMessageDialog(this,"Producto no encontrado","Eliminar producto",2);
             }
-        }
-        //hay un error
-        catch (Exception e) {
-            //error
+            }
+            //hay un error
+            catch (Exception e) {
+                //error
+            }
         }
     }//GEN-LAST:event_btnBorrarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         // TODO add your handling code here:
         //obtengo datos
-        int id = Integer.parseInt(this.txtId.getText().trim());
         String nombre = this.txtNombre.getText().trim();
-        int precio = Integer.parseInt(this.txtPrecio.getText().trim());
-        int cantidad = Integer.parseInt(this.txtCantidad.getText().trim());
         String tipo = this.txtTipo.getText().trim();
         String marca = this.txtMarca.getText().trim();
-
-        try {
+        String auxPrecio = txtPrecio.getText().trim();
+        String auxCant = txtCantidad.getText().trim();
+        int precio = 0;
+        int cantidad = 0;
+        
+        //erorres
+        List<String> errores = new ArrayList<>();
+        
+        //valido data
+        if (nombre.isEmpty() || tipo.isEmpty() || marca.isEmpty() || auxPrecio.isEmpty() || auxCant.isEmpty()) {
+            errores.add("- No deje campos vacios");
+        }
+        if (nombre.length() > 25) {
+            errores.add("- El largo del nombre no debe ser mayor a 25");
+        }
+        if (tipo.length() > 20) {
+            errores.add("- El largo del tipo no debe ser mayor a 20");
+        }
+        if (marca.length() > 25) {
+            errores.add("- El largo de la marca no debe ser mayor a 25");
+        }
+        //datos numericos?
+        try{
+            precio = Integer.parseInt(this.txtPrecio.getText());
+        }
+        catch (Exception ex) {
+            errores.add("- Error, el precio debe ser númerico");
+        }
+        try{
+            cantidad = Integer.parseInt(this.txtCantidad.getText());
+        }
+        catch (Exception ex) {
+            errores.add("- Error, la cantidad debe ser númerica");
+        }
+        //hay errores?
+        if (!errores.isEmpty()) {
+            //hay errores, creo mensaje de error
+            String msgError = String.join("\n", errores);
+            JOptionPane.showMessageDialog(null, msgError, "Error en insertado de producto", 2);
+        }
+        //no hay
+        else {
+            try {
+            int id = Integer.parseInt(this.txtId.getText().trim());
             Producto producto = new Producto(id);
             producto.existeProducto();
             //SI EXISTE, actualizo el registro
@@ -370,10 +443,11 @@ public class jiFrame_borrarProducto extends javax.swing.JInternalFrame {
             else{
                 JOptionPane.showMessageDialog(this,"Producto no encontrado","Actualizar Producto",1);
             }
-        }
-        //hay un error
-        catch (Exception e) {
-            //error
+            }
+            //hay un error
+            catch (Exception e) {
+                //error
+            }
         }
     }//GEN-LAST:event_btnEditarActionPerformed
 
@@ -392,9 +466,15 @@ public class jiFrame_borrarProducto extends javax.swing.JInternalFrame {
     private void btnRestaurarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestaurarProductoActionPerformed
         // TODO add your handling code here:
         //obtengo datos
-        int id = Integer.parseInt(this.txtId.getText().trim());
+        String auxId = txtId.getText().trim();
         
-        try {
+        if (auxId.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "No deje el ID en blanco", "Error en restaurar de producto", 2);
+        }
+        //todo ok, hay id
+        else{
+            try {
+            int id = Integer.parseInt(this.txtId.getText().trim());
             Producto producto = new Producto(id);
             producto.existeProducto();
             //SI EXISTE, restauro el registro
@@ -407,10 +487,11 @@ public class jiFrame_borrarProducto extends javax.swing.JInternalFrame {
             else{
                 JOptionPane.showMessageDialog(this,"Producto no encontrado","Restaurar Producto",1);
             }
-        }
-        //hay un error
-        catch (Exception e) {
-            //error
+            }
+            //hay un error
+            catch (Exception e) {
+                //error
+            }
         }
     }//GEN-LAST:event_btnRestaurarProductoActionPerformed
 

@@ -172,6 +172,15 @@ public class jiFrame_agregarProducto extends javax.swing.JInternalFrame {
         if (nombre.isEmpty() || tipo.isEmpty() || marca.isEmpty() || auxPrecio.isEmpty() || auxCant.isEmpty()) {
             errores.add("- No deje campos vacios");
         }
+        if (nombre.length() > 25) {
+            errores.add("- El largo del nombre no debe ser mayor a 25");
+        }
+        if (tipo.length() > 20) {
+            errores.add("- El largo del tipo no debe ser mayor a 20");
+        }
+        if (marca.length() > 25) {
+            errores.add("- El largo de la marca no debe ser mayor a 25");
+        }
         //datos numericos?
         try{
             precio = Integer.parseInt(this.txtPrecio.getText());

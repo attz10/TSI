@@ -2,7 +2,9 @@ package Vistas;
 
 //librerias a utilizar
 //import Controladores.Conexion;
+import Controladores.Conexion;
 import Controladores.Usuario;
+import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 
 /*
