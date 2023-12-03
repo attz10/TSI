@@ -23,8 +23,8 @@ public class Menu extends javax.swing.JFrame {
     jiFrame_borrarEditarCliente jiEditar = new jiFrame_borrarEditarCliente();
     jiFrame_listarClientes jiListar = new jiFrame_listarClientes();
     //vistas para la administracion de vehículos
-    jFrame_agregarAuto jAgregarVehiculo = new jFrame_agregarAuto();
-    jFrame_borrarAuto jBorrarAuto = new jFrame_borrarAuto();
+    jiFrame_agregarAuto jAgregarVehiculo = new jiFrame_agregarAuto();
+    jiFrame_borrarAuto jBorrarAuto = new jiFrame_borrarAuto();
     
     
     public Menu() {
