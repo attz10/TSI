@@ -347,6 +347,11 @@ public class jiFrame_borrarAuto extends javax.swing.JInternalFrame {
             vehiculo.existeVehiculo();
             //SI EXISTE, actualizo el registro
             if(Conexion.buscarVehiculo){
+                vehiculo.setMarca(marca);
+                vehiculo.setColor(color);
+                vehiculo.setModelo(modelo);
+                vehiculo.setComentario(comentario);
+                vehiculo.setRutCliente(rut);
                 vehiculo.actualizarVehiculo();
                 limpiar();
                 mostrarVehiculos();

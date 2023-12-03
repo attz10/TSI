@@ -21,8 +21,9 @@ public class Producto {
     private int costo_unitario;
     private String tipo;
     private String marca;
+    private boolean borrado;
     
-    //constructor
+    //constructores
     public Producto(int id,String nombre, int cantidad, int costoUnitatrio, String tipo, String marca){
         this.id = id;
         this.nombre = nombre;
@@ -93,12 +94,20 @@ public class Producto {
         this.marca = marca;
     }
     
+    public void setBorrado(boolean borrado){
+        this.borrado = borrado;
+    }
+    
+    public boolean getBorrado(){
+        return borrado;
+    }
+    
     //insertado de nuevo producto
     public void insertarProducto(){
         try {
             //intento insertado del producto
-            String sql = "insert into productos values ('"+nombre+"', '"+cantidad+"', '"+costo_unitario+"', "
-                + " '"+tipo+"', '"+marca+"')";
+            String sql = "insert into productos values (id, '"+nombre+"', "+cantidad+", "+costo_unitario+", "
+                + " '"+tipo+"', '"+marca+"', "+false+" )";
             Conexion.conectar();
             Conexion.stm = Conexion.con.prepareStatement(sql);
             Conexion.stm.execute(sql);
@@ -133,7 +142,7 @@ public class Producto {
     public void borrarProducto(){
         try {
             //intento borrar producto
-            String sql = "delete from productos where id = "+id+" ";
+            String sql = "update productos set is_deleted = "+true+" where id = "+id+" ";
             Conexion.conectar();
             Conexion.stm = Conexion.con.prepareStatement(sql);
             Conexion.stm.execute(sql);
@@ -151,7 +160,7 @@ public class Producto {
         try {
             //intento buscar el producto
             Conexion.buscarProducto = false;
-            String sql = "select * from productos where id = "+id+" ";
+            String sql = "select * from productos where id = "+id+" or nombre = '"+nombre+"' ";
             Conexion.conectar();
             Conexion.stm = Conexion.con.prepareStatement(sql);
             ResultSet rs = Conexion.stm.executeQuery(sql);
@@ -164,12 +173,30 @@ public class Producto {
                 costo_unitario = rs.getInt(4);
                 tipo = rs.getString(5);
                 marca = rs.getString(6);
+                borrado = rs.getBoolean(7);
             }
             Conexion.desconectar();
         } 
         //no existe
         catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error, no existe el producto", "Buscar un producto", 2);
+        }
+    }
+    
+    //restaurar producto
+    public void restaurarProducto(){
+        try{
+            //intento restaurar al producto
+            String sql = "update productos set is_deleted = "+false+" where id = "+id+" ";
+            Conexion.conectar();
+            Conexion.stm = Conexion.con.prepareStatement(sql);
+            Conexion.stm.execute(sql);
+            JOptionPane.showMessageDialog(null, "Producto restaurado correctamente", "Restaurar un producto", 1);
+            Conexion.desconectar();
+        }
+        //hubo un error
+        catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Error, no se restauró el producto", "Restaurar un producto", 2);
         }
     }
     

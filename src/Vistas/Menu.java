@@ -55,7 +55,6 @@ public class Menu extends javax.swing.JFrame {
         jMenuBodega = new javax.swing.JMenu();
         jmiEditDeleteProducto = new javax.swing.JMenuItem();
         jmiAgregarProducto = new javax.swing.JMenuItem();
-        jmiListarProductos = new javax.swing.JMenuItem();
         jMenuServicios = new javax.swing.JMenu();
         jmiEditDeleteServicio = new javax.swing.JMenuItem();
         jmiAgregarServicio = new javax.swing.JMenuItem();
@@ -176,10 +175,6 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         jMenuBodega.add(jmiAgregarProducto);
-
-        jmiListarProductos.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
-        jmiListarProductos.setText("Listar productos");
-        jMenuBodega.add(jmiListarProductos);
 
         jMenuBar1.add(jMenuBodega);
 
@@ -327,7 +322,7 @@ public class Menu extends javax.swing.JFrame {
         PanelDeEscritorio.add(jiBorrarProducto);
         //centro panel
         Dimension escritorioSize = PanelDeEscritorio.getSize();
-        Dimension frameSize = jiEditar.getSize();
+        Dimension frameSize = jiBorrarProducto.getSize();
         jiBorrarProducto.setLocation((escritorioSize.width - frameSize.width)/2, (escritorioSize.height- escritorioSize.height)/2);
         //muestro el panel
         this.jiBorrarProducto.show();
@@ -338,7 +333,7 @@ public class Menu extends javax.swing.JFrame {
         PanelDeEscritorio.add(jiAgregarProducto);
         //centro panel
         Dimension escritorioSize = PanelDeEscritorio.getSize();
-        Dimension frameSize = jiEditar.getSize();
+        Dimension frameSize = jiAgregarProducto.getSize();
         jiAgregarProducto.setLocation((escritorioSize.width - frameSize.width)/2, (escritorioSize.height- escritorioSize.height)/2);
         //muestro el panel
         this.jiAgregarProducto.show();
@@ -397,7 +392,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmiEditDeleteServicio;
     private javax.swing.JMenuItem jmiEditDeleteVehiculo;
     private javax.swing.JMenuItem jmiListarClientes;
-    private javax.swing.JMenuItem jmiListarProductos;
     private javax.swing.JMenuItem jmiListarServicio;
     private javax.swing.JMenuItem jmiListarVentas;
     private javax.swing.JMenuItem jmiRealizarVenta;

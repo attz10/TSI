@@ -116,12 +116,12 @@ public class Vehiculo {
     public void actualizarVehiculo(){
         try {
             //intento actualizar registro
-            String sql = "update vehiculos set marca = '"+marca+"', color = '"+color+"', modelo = '"+modelo+"',"
-                    + " comentario = '"+comentario+"', rut_cliente = '"+rut_cliente+"' where patente = '"+patente+"' ";
+            String sql = "update vehiculos set marca='"+marca+"', color='"+color+"', modelo='"+modelo+"', "
+                    + "comentario='"+comentario+"', rut_cliente='"+rut_cliente+"' where patente='"+patente+"' ";
             Conexion.conectar();
             Conexion.stm = Conexion.con.prepareStatement(sql);
             Conexion.stm.execute(sql);
-            JOptionPane.showMessageDialog(null, "Vehiculo actualizado correctamente", "Actualizar registro de un Vehiculo", 1);
+            JOptionPane.showMessageDialog(null, "Vehiculo con patente ("+patente+") actualizado correctamente", "Actualizar registro de un Vehiculo", 1);
             Conexion.desconectar();
         } 
         //hay un error
