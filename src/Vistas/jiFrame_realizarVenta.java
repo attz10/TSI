@@ -229,6 +229,9 @@ public class jiFrame_realizarVenta extends javax.swing.JInternalFrame {
                 else if (!Conexion.buscarServicio){
                     JOptionPane.showMessageDialog(null, "Error, no existe el servicio", "Error en insertar venta", 2);
                 }
+                else if (prod.verificarStock()){
+                    JOptionPane.showMessageDialog(null, "Error, no hay stock del producto", "Error en insertar venta", 2);
+                }
                 else{
                     bitacora.insertarBitacora();
                     Boleta boleta = new Boleta();

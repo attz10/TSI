@@ -216,4 +216,25 @@ public class Producto {
             JOptionPane.showMessageDialog(null, "Error, no se restó el producto", "Restar cantidad de un producto", 2);
         }
     }
+    
+    public boolean verificarStock(){
+        int stock = 0;
+        try {
+            //intento buscar el producto
+            String sql = "select * from productos where id = "+id+" ";
+            Conexion.conectar();
+            Conexion.stm = Conexion.con.prepareStatement(sql);
+            ResultSet rs = Conexion.stm.executeQuery(sql);
+            //existe el producto?
+            if(rs.next()){
+                stock = rs.getInt(3);
+            }
+            Conexion.desconectar();
+        } 
+        //no existe
+        catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error, en verificar stock de producto", "Buscar stock de un producto", 2);
+        }
+        return stock == 0;
+    }
 }
