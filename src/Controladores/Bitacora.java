@@ -81,13 +81,14 @@ public class Bitacora {
         this.rutUsuario = rutUsuario;
     }
     
+    //agregar bitacora
     public void insertarBitacora(){
         try {
-            String sql = "insert into bitacora values (idBitacora, '"+patente+"', "+idProducto+", "+idServicio+",'"+comentario+"','"+rutUsuario+"')";
+            String sql = "insert into bitacora values (id, '"+patente+"', "+idProducto+", "+idServicio+",'"+comentario+"','"+rutUsuario+"')";
             Conexion.conectar();
             Conexion.stm = Conexion.con.prepareStatement(sql);
             Conexion.stm.execute(sql);
-            JOptionPane.showMessageDialog(null, "Datos guardados correctamente", "Exito en agregar producto", 1);
+            //JOptionPane.showMessageDialog(null, "Datos guardados correctamente", "Exito en agregar bitacora", 1);
             Conexion.desconectar();
         } 
         //hay un error
@@ -95,25 +96,8 @@ public class Bitacora {
             JOptionPane.showMessageDialog(null, "Error en guardar registro", "Error en agregar registro", 2);
         }
     }
-    
-    /*
-    public void borrarBitacora(){
-        try {
-            //intento borrar producto
-            String sql = "update productos set is_deleted = "+true+" where id = "+id+" ";
-            Conexion.conectar();
-            Conexion.stm = Conexion.con.prepareStatement(sql);
-            Conexion.stm.execute(sql);
-            JOptionPane.showMessageDialog(null, "Producto borrado correctamente", "Borrar un producto", 1);
-            Conexion.desconectar();
-        } 
-        //hay un error
-        catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error en borrar producto", "Error en borrar registro de un producto", 2);
-        }
-    }
-    */
-    
+      
+    //existe bitacora?
     public void existeBitacora(){
         try {
             Conexion.buscarBitacora = false;
@@ -138,22 +122,4 @@ public class Bitacora {
             JOptionPane.showMessageDialog(null, "Error, no existe el registro", "Buscar un registro", 2);
         }
     }
-    
-    /*
-    public void restaurarBitacora(){
-        try{
-            //intento restaurar al producto
-            String sql = "update productos set is_deleted = "+false+" where id = "+id+" ";
-            Conexion.conectar();
-            Conexion.stm = Conexion.con.prepareStatement(sql);
-            Conexion.stm.execute(sql);
-            JOptionPane.showMessageDialog(null, "Producto restaurado correctamente", "Restaurar un producto", 1);
-            Conexion.desconectar();
-        }
-        //hubo un error
-        catch(Exception ex){
-            JOptionPane.showMessageDialog(null, "Error, no se restauró el producto", "Restaurar un producto", 2);
-        }
-    }
-    */
 }

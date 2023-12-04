@@ -31,6 +31,9 @@ public class Menu extends javax.swing.JFrame {
     //vistas para la administracion de servicios
     jiFrame_agregarServicio jiAgregarServicio = new jiFrame_agregarServicio();
     jiFrame_modificarServicio jiEditarServicio = new jiFrame_modificarServicio();
+    //vistas para la administracion de ventas
+    jiFrame_listarBitacora jiListarBitacoras = new jiFrame_listarBitacora();
+    jiFrame_realizarVenta jiRealizarVenta = new jiFrame_realizarVenta();
     
     public Menu() {
         initComponents();
@@ -210,10 +213,20 @@ public class Menu extends javax.swing.JFrame {
 
         jmiRealizarVenta.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jmiRealizarVenta.setText("Realizar venta");
+        jmiRealizarVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiRealizarVentaActionPerformed(evt);
+            }
+        });
         jMenuVentas.add(jmiRealizarVenta);
 
         jmiListarVentas.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jmiListarVentas.setText("Listar ventas");
+        jmiListarVentas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiListarVentasActionPerformed(evt);
+            }
+        });
         jMenuVentas.add(jmiListarVentas);
 
         jMenuBar1.add(jMenuVentas);
@@ -367,6 +380,28 @@ public class Menu extends javax.swing.JFrame {
         //muestro el panel
         this.jiEditarServicio.show();
     }//GEN-LAST:event_jmiEditDeleteServicioActionPerformed
+
+    private void jmiListarVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiListarVentasActionPerformed
+        // TODO add your handling code here:
+        PanelDeEscritorio.add(jiListarBitacoras);
+        //centro panel
+        Dimension escritorioSize = PanelDeEscritorio.getSize();
+        Dimension frameSize = jiListarBitacoras.getSize();
+        jiListarBitacoras.setLocation((escritorioSize.width - frameSize.width)/2, (escritorioSize.height- escritorioSize.height)/2);
+        //muestro el panel
+        this.jiListarBitacoras.show();
+    }//GEN-LAST:event_jmiListarVentasActionPerformed
+
+    private void jmiRealizarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiRealizarVentaActionPerformed
+        // TODO add your handling code here:
+        PanelDeEscritorio.add(jiRealizarVenta);
+        //centro panel
+        Dimension escritorioSize = PanelDeEscritorio.getSize();
+        Dimension frameSize = jiRealizarVenta.getSize();
+        jiRealizarVenta.setLocation((escritorioSize.width - frameSize.width)/2, (escritorioSize.height- escritorioSize.height)/2);
+        //muestro el panel
+        this.jiRealizarVenta.show();
+    }//GEN-LAST:event_jmiRealizarVentaActionPerformed
 
     /**
      * @param args the command line arguments
